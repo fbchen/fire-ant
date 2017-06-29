@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "stripInternal": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "../../../dist/fire-ant",
+    "paths": {
+      "rxjs/*": [ "../../../node_modules/rxjs/*" ],
+      "@angular/*": [ "../../../node_modules/@angular/*" ]
+    },
+    "rootDir": ".",
+    "sourceMap": true,
+    "inlineSources": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "lib": [ "es2016", "dom", "es2015.promise", "es2015.collection", "es2015.iterable" ],
+    "typeRoots": [
+      "../../../node_modules/@types/"
+    ],
+    // don't auto-discover @types/node, it results in a ///<reference in the .d.ts output
+    "types": []
+  },
+  "files": [
+    "public_api.ts",
+    "../../../node_modules/zone.js/dist/zone.js.d.ts"
+  ],
+  "angularCompilerOptions": {
+
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "fire-ant"
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

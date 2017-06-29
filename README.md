@@ -1,13 +1,14 @@
 # Fire-Ant
 Fire-Ant 是Ant-Design框架的Angular(4.*)实现的，可用作PC Web应用开发的UI框架。
 
-[Ant-Design](https://ant.design/index-cn) 由阿里巴巴的蚂蚁金服体验技术部出品，提供了丰富、灵活、实用的基础组件，但是其实现是基于React技术，对于喜欢Angular的童鞋来说，Fire-Ant是一个值得选择的开发框架。
-
-[Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
-
 Fire-Ant 是在参考Ant-Design的源码基础上，采用了更加简洁的实现，此外，在css格式上采用Sass代替了Less。封装后的组件更加灵活方便，使开发人员可以更加专注于业务的实现，可以极大减少前端开发时间。
 
 FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们以在水中筑筏而著称，在影片《蚁人》中蚁人利用一个蚁筏通过了下水道。希望FireAnt能为前端开发人员和创业者们逢山开路、遇水搭桥，勇往直前。
+
+- [Ant-Design](https://ant.design/index-cn) 由阿里巴巴的蚂蚁金服体验技术部出品，提供了丰富、灵活、实用的基础组件，基于React技术实现，对于喜欢Angular的童鞋来说，Fire-Ant无疑是一个值得选择的开发框架。
+
+- [Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
+
 
 ## Components
 
@@ -162,11 +163,6 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>Steps 步骤条</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
-        </tr>
-        <tr>
-            <td>Tabs 标签页</td>
             <td> </td>
             <td>待开发 (Pending)</td>
         </tr>
@@ -350,6 +346,11 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 
 > Checkbox 多选框：
 ```html
+<!-- normal -->
+<ant-checkbox value="open" [checked]="true">Checkbox</ant-checkbox>
+<!-- the checked state is controlled by ngModel -->
+<ant-checkbox value="open" uncheckedValue="off" [(ngModel)]="example1.value">Checkbox</ant-checkbox>
+<!-- group -->
 <ant-checkbox-group [(ngModel)]="example4.group1" (change)="onChange($event)">
     <ant-checkbox value="Apple">Apple</ant-checkbox>
     <ant-checkbox value="Pear">Pear</ant-checkbox>
@@ -387,6 +388,11 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 
 > Radio 单选框：
 ```html
+<!-- normal -->
+<ant-radio value="open" [checked]="true">Radio</ant-radio>
+<!-- the checked state is controlled by ngModel -->
+<ant-radio value="open" uncheckedValue="off" [(ngModel)]="example1.value">Radio</ant-radio>
+<!-- group -->
 <ant-radio-group [(ngModel)]="example3.group1" (change)="onGroupChange($event)">
     <ant-radio value="1">A</ant-radio>
     <ant-radio value="2">B</ant-radio>
@@ -404,9 +410,12 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 
 > Switch 开关：
 ```html
+<!-- normal -->
 <ant-switch (change)="onChange($event)"></ant-switch>
-
 <ant-switch (change)="onChange($event)" checkedText="开" uncheckedText="关"></ant-switch>
+
+<!-- the checked state is controlled by ngModel -->
+<ant-switch value="open" uncheckedValue="off" [(ngModel)]="example1.value"></ant-switch>
 ```
 
 > Select 选择器：
@@ -457,9 +466,14 @@ tags模式：
     </thead>
     <tbody>
         <tr>
+            <td>Avatar 头像</td>
+            <td>&lt;ant-avatar&gt;</td>
+            <td>已完成(Done)</td>
+        </tr>
+        <tr>
             <td>Badge 徽标数</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-badge&gt;</td>
+            <td>已完成(Done)</td>
         </tr>
         <tr>
             <td>Collapse 折叠面板</td>
@@ -507,12 +521,41 @@ tags模式：
             <td>已完成(Done)</td>
         </tr>
         <tr>
-            <td>Table 表格</td>
+            <td>Tabs 标签页</td>
             <td> </td>
             <td>待开发 (Pending)</td>
         </tr>
+        <tr>
+            <td>Table 表格</td>
+            <td>&lt;ant-table&gt;</td>
+            <td>已完成(Done)</td>
+        </tr>
     </tbody>
 </table>
+
+> Avatar 头像：
+```html
+<ant-avatar icon="user"></ant-avatar>
+<ant-avatar><ant-avatar-text>U</ant-avatar-text></ant-avatar>
+<ant-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></ant-avatar>
+```
+
+> Badge 徽标数：
+```html
+<ant-badge [count]="5" [showZero]="true">
+    <a href="#" class="head-example"></a>
+</ant-badge>
+
+<ant-badge [dot]="true">
+    <ant-icon type="notification"></ant-icon>
+</ant-badge>
+
+<ant-badge status="success"></ant-badge>
+<ant-badge status="error"></ant-badge>
+<ant-badge status="default"></ant-badge>
+<ant-badge status="processing"></ant-badge>
+<ant-badge status="warning"></ant-badge>
+```
 
 > Tooltip 文字提示器：
 ```html
@@ -522,6 +565,40 @@ tags模式：
 > Tag 标签：
 ```html
 <ant-tag [closable]="true" (beforeClose)="beforeClose($event)" (close)="afterClose($event)">Tag 1</ant-tag>
+```
+
+> Table 表格：
+```html
+<ant-table>
+    <table-header>这是表格标题</table-header>
+    <table-content>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>地址</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of getExample1Data()">
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.address}}</td>
+                <td>
+                    <a href="#">编辑</a>
+                    <span class="ant-divider"></span>
+                    <a href="#">删除</a>
+                    <span class="ant-divider"></span>
+                    <a href="#" class="ant-dropdown-link">
+                        更多 <ant-icon type="down"></ant-icon>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table-content>
+    <table-footer>这是表格注脚</table-footer>
+</ant-table>
 ```
 
 * Feedback
@@ -593,6 +670,21 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install fire-ant --save
 ```
 
+- 目前打成发布包的脚本还有问题，安装包还不可用，深感抱歉！主要问题如下：
+1. ERROR in AntModule is not an NgModule
+2. 没有把templateUrl中的html文件装入ts、js文件内
+3. 没有把styleUrls中的scss文件装入ts、js文件内
+- 例如
+```ts
+@Component({
+    selector: 'ant-input',
+    templateUrl: './input.html',  <-- did not package inside
+    styleUrls: ['./style/index.scss'],  <-- did not package inside
+    encapsulation: ViewEncapsulation.None,
+    providers: [INPUT_CONTROL_VALUE_ACCESSOR]
+})
+```
+
 ## Quickstart
 
 直接下载本工程，并启动运行查看Demo：
@@ -638,3 +730,24 @@ Demo Project:
 [https://github.com/fbchen/fire-ant-example](https://github.com/fbchen/fire-ant-example)
 
 
+# License
+
+基于 [MIT](./LICENSE) 协议发布，免费开源
+
+# Contributing
+Thanks for your interest in contributing! :tada: Read up on our guidelines for [contributing][contributing] and then look through our issues with a help [help wanted](https://github.com/fbchen/fire-ant-example/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22)
+label.
+
+我们欢迎任何形式的贡献，有任何建议或意见您可以进行 [Pull Request](https://github.com/fbchen/fire-ant-example/pulls)，或者给我们 [提问](https://github.com/fbchen/fire-ant-example/issues)。
+
+##DONATIONS
+
+If you find fire-ant helpful, please consider making a donation (of cash,
+software, or hardware) to support continued work on the project. You can
+donate through 支付宝/Alipay or 微信/WeChat by scanning qrcodes as follows:
+
+![image](https://github.com/fbchen/fire-ant-example/raw/master/.github/images/alipay.jpg)
+![image](https://github.com/fbchen/fire-ant-example/raw/master/.github/images/wcpay.jpg)
+
+
+[contributing]: https://github.com/fbchen/fire-ant-example/.github/CONTRIBUTING.md

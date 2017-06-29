@@ -1,0 +1,6 @@
+{
+  "description": "config for launch lite server",
+  "port": 9000,
+  "files": ["./dist/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./dist" }
+}
