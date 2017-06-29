@@ -1,13 +1,14 @@
 # Fire-Ant
 Fire-Ant 是Ant-Design框架的Angular(4.*)实现的，可用作PC Web应用开发的UI框架。
 
-[Ant-Design](https://ant.design/index-cn) 由阿里巴巴的蚂蚁金服体验技术部出品，提供了丰富、灵活、实用的基础组件，但是其实现是基于React技术，对于喜欢Angular的童鞋来说，Fire-Ant是一个值得选择的开发框架。
-
-[Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
-
 Fire-Ant 是在参考Ant-Design的源码基础上，采用了更加简洁的实现，此外，在css格式上采用Sass代替了Less。封装后的组件更加灵活方便，使开发人员可以更加专注于业务的实现，可以极大减少前端开发时间。
 
 FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们以在水中筑筏而著称，在影片《蚁人》中蚁人利用一个蚁筏通过了下水道。希望FireAnt能为前端开发人员和创业者们逢山开路、遇水搭桥，勇往直前。
+
+- [Ant-Design](https://ant.design/index-cn) 由阿里巴巴的蚂蚁金服体验技术部出品，提供了丰富、灵活、实用的基础组件，基于React技术实现，对于喜欢Angular的童鞋来说，Fire-Ant无疑是一个值得选择的开发框架。
+
+- [Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
+
 
 ## Components
 
@@ -162,11 +163,6 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>Steps 步骤条</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
-        </tr>
-        <tr>
-            <td>Tabs 标签页</td>
             <td> </td>
             <td>待开发 (Pending)</td>
         </tr>
@@ -457,9 +453,14 @@ tags模式：
     </thead>
     <tbody>
         <tr>
+            <td>Avatar 头像</td>
+            <td>&lt;ant-avatar&gt;</td>
+            <td>已完成(Done)</td>
+        </tr>
+        <tr>
             <td>Badge 徽标数</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-badge&gt;</td>
+            <td>已完成(Done)</td>
         </tr>
         <tr>
             <td>Collapse 折叠面板</td>
@@ -507,12 +508,41 @@ tags模式：
             <td>已完成(Done)</td>
         </tr>
         <tr>
-            <td>Table 表格</td>
+            <td>Tabs 标签页</td>
             <td> </td>
             <td>待开发 (Pending)</td>
         </tr>
+        <tr>
+            <td>Table 表格</td>
+            <td>&lt;ant-table&gt;</td>
+            <td>已完成(Done)</td>
+        </tr>
     </tbody>
 </table>
+
+> Avatar 头像：
+```html
+<ant-avatar icon="user"></ant-avatar>
+<ant-avatar><ant-avatar-text>U</ant-avatar-text></ant-avatar>
+<ant-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></ant-avatar>
+```
+
+> Badge 徽标数：
+```html
+<ant-badge [count]="5" [showZero]="true">
+    <a href="#" class="head-example"></a>
+</ant-badge>
+
+<ant-badge [dot]="true">
+    <ant-icon type="notification"></ant-icon>
+</ant-badge>
+
+<ant-badge status="success"></ant-badge>
+<ant-badge status="error"></ant-badge>
+<ant-badge status="default"></ant-badge>
+<ant-badge status="processing"></ant-badge>
+<ant-badge status="warning"></ant-badge>
+```
 
 > Tooltip 文字提示器：
 ```html
@@ -522,6 +552,40 @@ tags模式：
 > Tag 标签：
 ```html
 <ant-tag [closable]="true" (beforeClose)="beforeClose($event)" (close)="afterClose($event)">Tag 1</ant-tag>
+```
+
+> Table 表格：
+```html
+<ant-table>
+    <table-header>这是表格标题</table-header>
+    <table-content>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>地址</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of getExample1Data()">
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.address}}</td>
+                <td>
+                    <a href="#">编辑</a>
+                    <span class="ant-divider"></span>
+                    <a href="#">删除</a>
+                    <span class="ant-divider"></span>
+                    <a href="#" class="ant-dropdown-link">
+                        更多 <ant-icon type="down"></ant-icon>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table-content>
+    <table-footer>这是表格注脚</table-footer>
+</ant-table>
 ```
 
 * Feedback
