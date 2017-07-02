@@ -1,0 +1,28 @@
+<ant-col
+    *ngIf="customLabel || getLabelText()"
+    [span]="getLabelSpan()" [offset]="getLabelOffset()"
+    [xs]="getLabelSize('xs')" [sm]="getLabelSize('sm')" [md]="getLabelSize('md')" [lg]="getLabelSize('lg')" [xl]="getLabelSize('xl')"
+    [ngClass]="getLabelWrapperClasses()"
+>
+    <label *ngIf="getLabelText()"
+        [attr.for]="control?.valueAccessor.id" [attr.title]="getLabelText()"
+        [ngClass]="getLabelClasses()"
+    >{{getLabelText()}}</label>
+    <label *ngIf="customLabel"
+        [attr.for]="control?.valueAccessor.id" [ngClass]="getLabelClasses()">
+        <ng-content select="form-label"></ng-content>
+    </label>
+</ant-col>
+<ant-col
+    [span]="getWrapperSpan()" [offset]="getWrapperOffset()"
+    [xs]="getWrapperSize('xs')" [sm]="getWrapperSize('sm')" [md]="getWrapperSize('md')" [lg]="getWrapperSize('lg')" [xl]="getWrapperSize('xl')"
+    [ngClass]="getControlWrapperClasses()"
+>
+    <div [ngClass]="getControlClasses()">
+        <ng-content></ng-content>
+        <div class="{{prefixCls}}-explain" *ngIf="help || customHelp">
+            {{help}}<ng-content select="form-help"></ng-content>
+        </div>
+        <div class="{{prefixCls}}-extra" *ngIf="extra">{{extra}}</div>
+    </div>
+</ant-col>
