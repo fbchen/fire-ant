@@ -9,6 +9,7 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 
 - [Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
 
+**================>打发布包的脚本部分需要高人帮助！！！！！！！！！！**
 
 ## Components
 
@@ -613,8 +614,8 @@ tags模式：
     <tbody>
         <tr>
             <td>Alert 警告提示</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-alert&gt;</td>
+            <td>已完成(Done)</td>
         </tr>
         <tr>
             <td>Modal 对话框</td>
@@ -623,13 +624,13 @@ tags模式：
         </tr>
         <tr>
             <td>Message 全局提示</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>Message</td>
+            <td>已完成(Done)</td>
         </tr>
         <tr>
             <td>Notification 通知提醒框</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>Notification</td>
+            <td>已完成(Done)</td>
         </tr>
         <tr>
             <td>Progress 进度条</td>
@@ -642,6 +643,16 @@ tags模式：
             <td>待开发 (Pending)</td>
         </tr>
         <tr>
+            <td>Dialog 信息提示框</td>
+            <td>&lt;ant-dialog&gt;</td>
+            <td>已完成(Done)</td>
+        </tr>
+        <tr>
+            <td>Dialog 信息提示框</td>
+            <td>Layer</td>
+            <td>已完成(Done)</td>
+        </tr>
+        <tr>
             <td>Spin 加载中</td>
             <td> </td>
             <td>待开发 (Pending)</td>
@@ -649,8 +660,60 @@ tags模式：
     </tbody>
 </table>
 
+> Alert 警告提示：
+```html
+<ant-alert type="success" message="Success Text"></ant-alert>
+```
 
+> Message 全局提示：
+```html
+<ant-button type="primary" (click)="info()">Display normal message</ant-button>
+```
+```ts
+constructor(private message: Message) {
+}
+info(): void {
+    this.message.info('This is a normal message');
+}
+```
 
+> Notification 通知提醒框：
+```html
+<ant-button type="primary" (click)="openNotification()">Open the notification box</ant-button>
+```
+```ts
+constructor(private notification: Notification) {
+}
+openNotification(): void {
+    this.notification.open({
+        message: 'Notification Title',
+        description: 'This is the content of the notification. This is the content of the notification.'
+    });
+}
+```
+
+> Dialog 信息提示框：
+```html
+<ant-button type="primary" (click)="showAlert()">Alert</ant-button>
+```
+```ts
+constructorprivate layer: Layer) {
+}
+showAlert(): void {
+    this.layer.showAlert('你好，我是提示信息!').then(() => {
+        console.log('您刚刚选择了: OK');
+    }, () => {
+        console.log('您刚刚选择了: NO');
+    });
+}
+showConfirm(): void {
+    this.layer.showConfirm('是否删除记录?', '系统消息').then(() => {
+        console.log('您刚刚选择了: OK');
+    }, () => {
+        console.log('您刚刚选择了: NO');
+    });
+}
+```
 
 
 ## Install
