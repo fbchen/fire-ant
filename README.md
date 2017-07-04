@@ -9,6 +9,7 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 
 - [Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
 
+**================>打发布包的脚本部分需要高人帮助！！！！！！！！！！**
 
 ## Components
 
