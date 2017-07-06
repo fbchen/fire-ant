@@ -138,7 +138,7 @@ export class FormItem extends Row {
 
     getLabelText(): string {
         // Keep label is original where there should have no colon
-        const haveColon = this.colon && !this.form.isVertical();
+        const haveColon = this.colon && (this.form && !this.form.isVertical());
         // Remove duplicated user input colon
         if (haveColon && this.label && this.label.trim() !== '') {
             return this.label.replace(/[：|:]\s*$/, '');
