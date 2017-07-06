@@ -13,11 +13,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Import FireAnt UI Components
+import { FormControl } from './input/form.control';
 import { FormDirective } from './form/form.directive';
 import { FormItem } from './form/form.item';
 import { FormLabel } from './form/form.label';
 import { FormHelp } from './form/form.help';
-
+import { Checkbox } from './checkbox/checkbox';
+import { CheckboxGroup } from './checkbox/checkbox.group';
+import { Radio } from './radio/radio';
+import { RadioGroup } from './radio/radio.group';
 
 
 /**
@@ -33,9 +37,15 @@ import { FormHelp } from './form/form.help';
         BrowserAnimationsModule
     ],
     declarations: [
+        FormControl,
+        Checkbox, CheckboxGroup,
+        Radio, RadioGroup,
         FormDirective, FormItem, FormLabel, FormHelp
     ],
     exports: [
+        FormControl,
+        Checkbox, CheckboxGroup,
+        Radio, RadioGroup,
         FormDirective, FormItem, FormLabel, FormHelp
     ],
     entryComponents: [

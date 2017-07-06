@@ -1,0 +1,16 @@
+<label [ngClass]="getWrapperClass()">
+    <span [ngClass]="getBoxClass()">
+        <input
+            [attr.name]="name"
+            [attr.type]="type"
+            [attr.tabIndex]="tabIndex"
+            [readonly]="readOnly"
+            [disabled]="disabled"
+            [checked]="checked"
+            class="{{getPrefixCls()}}-input"
+            (change)="handleChange($event)"
+        />
+        <span class="{{getPrefixCls()}}-inner"></span>
+    </span>
+    <span><ng-content></ng-content></span>
+</label>
