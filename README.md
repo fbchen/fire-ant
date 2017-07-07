@@ -26,12 +26,12 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Button 按钮</td>
             <td>&lt;ant-button&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Icon 图标</td>
             <td>&lt;ant-icon&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
     </tbody>
 </table>
@@ -58,47 +58,47 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Grid 栅格 - Row</td>
             <td>&lt;ant-row&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Grid 栅格 - Col</td>
             <td>&lt;ant-col&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Layout 布局</td>
             <td>
                 &lt;ant-layout&gt;
             </td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Layout 布局 - Header</td>
             <td>
                 &lt;ant-layout-header&gt;
             </td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Layout 布局 - Content</td>
             <td>
                 &lt;ant-layout-content&gt;
             </td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Layout 布局 - Footer</td>
             <td>
                 &lt;ant-layout-footer&gt;
             </td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Layout 布局 - Sider</td>
             <td>
                 &lt;ant-layout-sider&gt;
             </td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
     </tbody>
 </table>
@@ -140,7 +140,7 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Breadcrumb 面包屑</td>
             <td>&lt;ant-breadcrumb&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>BackTop 回到顶部</td>
@@ -150,17 +150,17 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Dropdown 下拉菜单</td>
             <td>&lt;ant-dropdown-button&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Menu 导航菜单</td>
             <td>&lt;ant-menu&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Pagination 分页</td>
             <td>&lt;ant-pagination&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Steps 步骤条</td>
@@ -265,7 +265,7 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Checkbox 多选框</td>
             <td>&lt;ant-checkbox&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Cascader 级联选择</td>
@@ -285,12 +285,12 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>InputNumber 数字输入框</td>
             <td>&lt;ant-number&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Input 输入框</td>
             <td>&lt;ant-input&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Mention 提及</td>
@@ -305,12 +305,12 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Radio 单选框</td>
             <td>&lt;ant-radio&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Switch 开关</td>
             <td>&lt;ant-switch&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Slider 滑动输入条</td>
@@ -320,7 +320,7 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         <tr>
             <td>Select 选择器</td>
             <td>&lt;ant-select&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>TreeSelect 树选择</td>
@@ -469,12 +469,12 @@ tags模式：
         <tr>
             <td>Avatar 头像</td>
             <td>&lt;ant-avatar&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Badge 徽标数</td>
             <td>&lt;ant-badge&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Collapse 折叠面板</td>
@@ -497,9 +497,9 @@ tags模式：
             <td>待开发 (Pending)</td>
         </tr>
         <tr>
-            <td>Popover气泡卡片</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>Popover 气泡卡片</td>
+            <td>ant-popover</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Tree 树形控件</td>
@@ -509,7 +509,7 @@ tags模式：
         <tr>
             <td>Tooltip 文字提示器</td>
             <td>&lt;ant-tooltip&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Timeline 时间轴</td>
@@ -519,7 +519,7 @@ tags模式：
         <tr>
             <td>Tag 标签</td>
             <td>&lt;ant-tag&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Tabs 标签页</td>
@@ -529,7 +529,7 @@ tags模式：
         <tr>
             <td>Table 表格</td>
             <td>&lt;ant-table&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
     </tbody>
 </table>
@@ -556,6 +556,18 @@ tags模式：
 <ant-badge status="default"></ant-badge>
 <ant-badge status="processing"></ant-badge>
 <ant-badge status="warning"></ant-badge>
+```
+
+> Popover 气泡卡片：
+```html
+<ant-button type="primary" ant-popover title="Title" pop-content="Content">Hover me</ant-button>
+<ant-button ant-popover title="Title" placement="topLeft" [arrowPointAtCenter]="true">
+    Arrow points to center / 箭头指向中心
+    <popover-content>
+        <p>Content</p>
+        <p>Content</p>
+    </popover-content>
+</ant-button>
 ```
 
 > Tooltip 文字提示器：
@@ -615,7 +627,7 @@ tags模式：
         <tr>
             <td>Alert 警告提示</td>
             <td>&lt;ant-alert&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Modal 对话框</td>
@@ -625,12 +637,12 @@ tags模式：
         <tr>
             <td>Message 全局提示</td>
             <td>Message</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Notification 通知提醒框</td>
             <td>Notification</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Progress 进度条</td>
@@ -639,18 +651,18 @@ tags模式：
         </tr>
         <tr>
             <td>Popconfirm 气泡确认框</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>popconfirm</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Dialog 信息提示框</td>
             <td>&lt;ant-dialog&gt;</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Dialog 信息提示框</td>
             <td>Layer</td>
-            <td>已完成(Done)</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Spin 加载中</td>
@@ -690,6 +702,11 @@ openNotification(): void {
         description: 'This is the content of the notification. This is the content of the notification.'
     });
 }
+```
+
+> Popconfirm 气泡确认框：
+```html
+<a href="javascript:;" popconfirm title="Are you sure delete this task?" (confirm)="onConfirm()" (cancel)="onCancel()">Delete</a>
 ```
 
 > Dialog 信息提示框：
