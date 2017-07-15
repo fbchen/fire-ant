@@ -269,8 +269,8 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>Cascader 级联选择</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-cascader&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>DatePicker 日期选择框</td>
@@ -358,6 +358,15 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
     <ant-checkbox value="Orange">Orange</ant-checkbox>
 </ant-checkbox-group>
 ```
+
+> Cascader 级联选择：
+```html
+<ant-cascader
+    [(ngModel)]="example1.value"
+    [firstOptions]="options" (change)="onChange($event)" (select)="onSelect($event)"
+    placeholder="Please select"></ant-cascader>
+```
+
 
 > InputNumber 数字输入框：
 ```html
@@ -523,8 +532,8 @@ tags模式：
         </tr>
         <tr>
             <td>Tabs 标签页</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-tabs&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Table 表格</td>
@@ -580,6 +589,15 @@ tags模式：
 <ant-tag [closable]="true" (beforeClose)="beforeClose($event)" (close)="afterClose($event)">Tag 1</ant-tag>
 ```
 
+> Tabs 标签页：
+```html
+<ant-tabs activeKey="1" (change)="onChange($event)">
+    <ant-tabpane title="Tab 1" key="1">Content of Tab Pane 1</ant-tabpane>
+    <ant-tabpane title="Tab 2" key="2" [disabled]="true">Content of Tab Pane 2</ant-tabpane>
+    <ant-tabpane title="Tab 3" key="3">Content of Tab Pane 3</ant-tabpane>
+</ant-tabs>
+```
+
 > Table 表格：
 ```html
 <ant-table>
@@ -631,8 +649,8 @@ tags模式：
         </tr>
         <tr>
             <td>Modal 对话框</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>Modal</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Message 全局提示</td>
@@ -675,6 +693,87 @@ tags模式：
 > Alert 警告提示：
 ```html
 <ant-alert type="success" message="Success Text"></ant-alert>
+```
+
+> Modal 对话框：
+模态对话框弹窗有两种方法，一种是传TemplateRef，一种是传Component，例子如下：
+例子1（TemplateRef）：
+```html
+<ant-button type="primary" (click)="showExample1Modal($event)">Open</ant-button>
+<ng-template #example1Template>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+</ng-template>
+```
+
+```ts
+@ViewChild('example1Template', { read: TemplateRef })
+example1Template: TemplateRef<any>;
+
+constructor(private modal: Modal) {
+}
+
+showExample1Modal(event: Event): void {
+    this.modal.open({
+        title: 'Basic Modal',
+        templateRef: this.example1Template,
+        triggerEvent: event
+    }).subscribe((result: { dialog: ModalDialog, event: Event, action: string }) => {
+        if (result.action === 'OK') {
+            console.log('你点击了【确定】');
+        } else {
+            console.log('你点击了【取消】');
+        }
+    }, (error) => {
+        console.error(error);
+    });
+}
+```
+
+例子2（Component）：
+```html
+<ant-button type="primary" (click)="showExample5Modal($event)">Open</ant-button>
+```
+
+```ts
+constructor(private modal: Modal) {
+}
+
+showExample5Modal(event: Event): void {
+    this.modal.create(ModalFormComponent, {
+        data: this.data
+    }, {
+        title: '请输入账号',
+        width: 320,
+        triggerEvent: event
+    }).subscribe((result: { dialog: ModalDialog, event: Event, button: any, action: string }) => {
+        console.log(`你点击了【${result.button.text || '确定'}】`, result.button);
+        console.log(this.data);
+        result.button.loading = true;
+        setTimeout(() => {
+            result.button.loading = false;
+            result.dialog.close();
+        }, 3000);
+    }, (error) => {
+        console.error(error);
+    });
+}
+```
+
+例子3（便捷方法，如：info、success、error、warning、confirm）：
+```ts
+info(): void {
+    const title = 'This is a notification message';
+    const content = 'some messages...some messages...';
+    this.modal.info(content, title)
+        .then((result: { dialog: ModalDialog, event: Event, action: string }) => {
+            console.log('你点击了【确定】');
+            result.dialog.close();
+        }, (result: { dialog: ModalDialog, event: Event, action: string }) => {
+            console.log('你点击了【取消】');
+        });
+}
 ```
 
 > Message 全局提示：
