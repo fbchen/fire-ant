@@ -696,7 +696,9 @@ tags模式：
 ```
 
 > Modal 对话框：
+
 模态对话框弹窗有两种方法，一种是传TemplateRef，一种是传Component，例子如下：
+
 例子1（TemplateRef）：
 ```html
 <ant-button type="primary" (click)="showExample1Modal($event)">Open</ant-button>
