@@ -279,8 +279,8 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>Form 表单</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;form&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>InputNumber 数字输入框</td>
@@ -365,6 +365,46 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
     [(ngModel)]="example1.value"
     [firstOptions]="options" (change)="onChange($event)" (select)="onSelect($event)"
     placeholder="Please select"></ant-cascader>
+```
+
+> Form 表单：
+```html
+<form #form1="ngForm" #fireForm1="faForm" layout="inline" (ngSubmit)="handleSubmit(fireForm1)" novalidate="">
+    <form-item>
+        <ant-input placeholder="Username" name="username"
+            [(ngModel)]="example1.username" [required]="true">
+            <input-prefix style="font-size: 13px">
+                <ant-icon type="user"></ant-icon>
+            </input-prefix>
+        </ant-input>
+    </form-item>
+    <form-item>
+        <ant-input placeholder="Password" name="password" type="password"
+            [(ngModel)]="example1.password" [required]="true">
+            <input-prefix style="font-size: 13px">
+                <ant-icon type="lock"></ant-icon>
+            </input-prefix>
+        </ant-input>
+    </form-item>
+    <form-item>
+        <ant-button type="primary" htmlType="submit" [disabled]="form1.invalid">
+            Login
+        </ant-button>
+    </form-item>
+</form>
+```
+
+```ts
+public exampleMessages = {
+    username: { required: '用户名不能为空' },
+    password: { required: '密码不能为空' }
+};
+
+public handleSubmit(form: FormDirective): void {
+    if (!form.validate(this.exampleMessages)) {
+        console.log('form is invalid...');
+    }
+}
 ```
 
 
