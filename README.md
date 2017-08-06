@@ -274,8 +274,18 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>DatePicker 日期选择框</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-datepicker&gt;</td>
+            <td>已完成 (Done)</td>
+        </tr>
+        <tr>
+            <td>MonthPicker 月份选择框</td>
+            <td>&lt;ant-monthpicker&gt;</td>
+            <td>已完成 (Done)</td>
+        </tr>
+        <tr>
+            <td>RangePicker 日期段选择框</td>
+            <td>&lt;ant-rangepicker&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Form 表单</td>
@@ -334,8 +344,13 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>TimePicker 时间选择框</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-timepicker&gt;</td>
+            <td>已完成 (Done)</td>
+        </tr>
+        <tr>
+            <td>TimeSelect 时间选择框</td>
+            <td>&lt;ant-time-select&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Upload 上传</td>
@@ -365,6 +380,41 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
     [(ngModel)]="example1.value"
     [firstOptions]="options" (change)="onChange($event)" (select)="onSelect($event)"
     placeholder="Please select"></ant-cascader>
+```
+
+> DatePicker 日期选择框：
+```html
+<label style="display: inline-block; width: 65px">选择日期：</label>
+<ant-datepicker
+    [(ngModel)]="example1.value1" (change)="onChange($event)">
+</ant-datepicker>
+
+<label style="display: inline-block; width: 65px">选择时间：</label>
+<ant-datepicker
+    [(ngModel)]="example1.value3"
+    [showTimePicker]="true" (change)="onChange($event)">
+</ant-datepicker>
+```
+
+> MonthPicker 月份选择框：
+```html
+<ant-monthpicker
+    [(ngModel)]="example1.value2" (change)="onChange($event)">
+</ant-monthpicker>
+```
+
+> RangePicker 日期段选择框：
+```html
+<label style="display: inline-block; width: 65px">选择日期：</label>
+<ant-rangepicker
+    [(ngModel)]="example1.value1" (change)="onRangeChange($event)">
+</ant-rangepicker>
+
+<label style="display: inline-block; width: 65px">选择时间：</label>
+<ant-rangepicker
+    [showTimePicker]="true"
+    [(ngModel)]="example1.value1" (change)="onRangeChange($event)">
+</ant-rangepicker>
 ```
 
 > Form 表单：
@@ -504,6 +554,23 @@ tags模式：
     </ant-option>
 </ant-select>
 ```
+
+> TimePicker 时间选择框：
+```html
+<label style="display: inline-block; width: 65px">选择时间：</label>
+<ant-timepicker
+    [(ngModel)]="example1.value1" (change)="onChange($event)">
+</ant-timepicker>
+```
+
+> TimeSelect 时间选择框：
+```html
+<label style="display: inline-block; width: 65px">选择时间：</label>
+<ant-time-select
+    [(ngModel)]="example1.value2" (change)="onChange($event)">
+</ant-time-select>
+```
+
 
 * Data Display
 <table>
