@@ -9,7 +9,6 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 
 - [Angular](https://github.com/angular/angular) is a development platform for building mobile and desktop web applications using Typescript/JavaScript (JS) and other languages.
 
-**================>打发布包的脚本部分需要高人帮助！！！！！！！！！！**
 
 ## Components
 
@@ -164,8 +163,8 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>Steps 步骤条</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-steps&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
     </tbody>
 </table>
@@ -247,6 +246,15 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 <ant-pagination [current]="1" [total]="50" (pageChange)="onPageChange($event)"></ant-pagination>
 ```
 
+> Steps 步骤条：
+```html
+<ant-steps [current]="1">
+    <ant-step nzTitle="Finished" description="This is a description."></ant-step>
+    <ant-step nzTitle="In Progress" description="This is a description."></ant-step>
+    <ant-step nzTitle="Waiting" description="This is a description."></ant-step>
+</ant-steps>
+```
+
 * Data Entry
 <table>
     <thead>
@@ -309,8 +317,8 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
         </tr>
         <tr>
             <td>Rate 评分</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-rate&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Radio 单选框</td>
@@ -378,7 +386,7 @@ FireAnt的中文名为“火蚁”，火蚁是蚂蚁团体的巧手匠，它们�
 ```html
 <ant-cascader
     [(ngModel)]="example1.value"
-    [firstOptions]="options" (change)="onChange($event)" (select)="onSelect($event)"
+    [options]="options" (change)="onChange($event)" (select)="onSelect($event)"
     placeholder="Please select"></ant-cascader>
 ```
 
@@ -484,6 +492,11 @@ public handleSubmit(form: FormDirective): void {
 </ant-input>
 
 <ant-input type="textarea" [(ngModel)]="example4.value1" placeholder="Autosize height based on content lines" [autosize]="true"></ant-input>
+```
+
+> Rate 评分：
+```html
+<ant-rate [(ngModel)]="example1.value1"></ant-rate>
 ```
 
 > Radio 单选框：
@@ -699,9 +712,9 @@ tags模式：
 > Tabs 标签页：
 ```html
 <ant-tabs activeKey="1" (change)="onChange($event)">
-    <ant-tabpane title="Tab 1" key="1">Content of Tab Pane 1</ant-tabpane>
-    <ant-tabpane title="Tab 2" key="2" [disabled]="true">Content of Tab Pane 2</ant-tabpane>
-    <ant-tabpane title="Tab 3" key="3">Content of Tab Pane 3</ant-tabpane>
+    <ant-tabpane tabTitle="Tab 1" key="1">Content of Tab Pane 1</ant-tabpane>
+    <ant-tabpane tabTitle="Tab 2" key="2" [disabled]="true">Content of Tab Pane 2</ant-tabpane>
+    <ant-tabpane tabTitle="Tab 3" key="3">Content of Tab Pane 3</ant-tabpane>
 </ant-tabs>
 ```
 
