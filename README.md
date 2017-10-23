@@ -622,8 +622,8 @@ tags模式：
         </tr>
         <tr>
             <td>Calendar 日历</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-fullcalendar&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Popover 气泡卡片</td>
@@ -685,6 +685,11 @@ tags模式：
 <ant-badge status="default"></ant-badge>
 <ant-badge status="processing"></ant-badge>
 <ant-badge status="warning"></ant-badge>
+```
+
+> Calendar 日历：
+```html
+<ant-fullcalendar (panelChange)="onPanelChange($event)"></ant-fullcalendar>
 ```
 
 > Popover 气泡卡片：
