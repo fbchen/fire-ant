@@ -809,8 +809,8 @@ tags模式：
         </tr>
         <tr>
             <td>Spin 加载中</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-spin&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
     </tbody>
 </table>
@@ -957,6 +957,12 @@ showConfirm(): void {
     });
 }
 ```
+
+> Spin 加载中：
+```html
+<ant-spin tip="Loading..."></ant-spin>
+```
+
 
 
 ## Install
