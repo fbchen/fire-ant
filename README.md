@@ -477,8 +477,8 @@ public handleSubmit(form: FormDirective): void {
 <ant-input placeholder="Basic usage" [(ngModel)]="example1.value"></ant-input>
 
 <ant-addon style="margin-bottom: 16px">
-    <addon-before>http://</addon-before>
-    <addon-after>.com</addon-after>
+    <ng-template #before>http://</ng-template>
+    <ng-template #after>.com</ng-template>
     <ant-input [(ngModel)]="example2.value1"></ant-input>
 </ant-addon>
 
@@ -789,8 +789,8 @@ tags模式：
         </tr>
         <tr>
             <td>Progress 进度条</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-progress&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Popconfirm 气泡确认框</td>
@@ -930,6 +930,14 @@ openNotification(): void {
 }
 ```
 
+Progress 进度条：
+```html
+<ant-progress [percent]="30"></ant-progress>
+<ant-progress type="circle" [percent]="75"></ant-progress>
+<ant-progress type="circle" [percent]="75" [status]="'exception'"></ant-progress>
+```
+
+
 > Popconfirm 气泡确认框：
 ```html
 <a href="javascript:;" popconfirm title="Are you sure delete this task?" (confirm)="onConfirm()" (cancel)="onCancel()">Delete</a>
@@ -975,6 +983,13 @@ npm install fire-ant --save
 
 ```bash
 npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+或者
+```bash
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
 ```
 
 然后通过cnpm命令来安装：
