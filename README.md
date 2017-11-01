@@ -789,8 +789,8 @@ tags模式：
         </tr>
         <tr>
             <td>Progress 进度条</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-progress&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Popconfirm 气泡确认框</td>
@@ -929,6 +929,14 @@ openNotification(): void {
     });
 }
 ```
+
+Progress 进度条：
+```html
+<ant-progress [percent]="30"></ant-progress>
+<ant-progress type="circle" [percent]="75"></ant-progress>
+<ant-progress type="circle" [percent]="75" [status]="'exception'"></ant-progress>
+```
+
 
 > Popconfirm 气泡确认框：
 ```html
