@@ -477,8 +477,8 @@ public handleSubmit(form: FormDirective): void {
 <ant-input placeholder="Basic usage" [(ngModel)]="example1.value"></ant-input>
 
 <ant-addon style="margin-bottom: 16px">
-    <addon-before>http://</addon-before>
-    <addon-after>.com</addon-after>
+    <ng-template #before>http://</ng-template>
+    <ng-template #after>.com</ng-template>
     <ant-input [(ngModel)]="example2.value1"></ant-input>
 </ant-addon>
 
@@ -983,6 +983,13 @@ npm install fire-ant --save
 
 ```bash
 npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+或者
+```bash
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
 ```
 
 然后通过cnpm命令来安装：
