@@ -6,17 +6,17 @@
  * found in the LICENSE file.
  */
 
-import { Component, Input, ElementRef, Renderer, ViewEncapsulation, HostBinding, Optional, Host, ContentChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewEncapsulation } from '@angular/core';
+import { HostBinding, Optional, Host, ContentChild, TemplateRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 import { FormDirective } from './form.directive';
 import { FormLabel } from './form.label';
-import { FormHelp } from './form.help';
 import { Row } from '../grid/row';
 import { ColSize } from '../grid/col';
 import { isPresent } from '../util/lang';
 
-import classNames from 'classnames';
+import { classnames } from '../util/classnames';
 
 
 /**
@@ -75,14 +75,13 @@ export class FormItem extends Row {
     /** 用户自定义label */
     @ContentChild(FormLabel) customLabel: FormLabel;
 
-    /** 用户自定义help文本 */
-    @ContentChild(FormHelp) customHelp: FormHelp;
+    /** 用户自定义help或error */
+    @ContentChild('help') anyHelp: TemplateRef<any>;
 
     constructor(
-        private renderer: Renderer,
-        private elementRef: ElementRef,
+        public elementRef: ElementRef,
         @Optional() @Host() private form: FormDirective) {
-        super(renderer, elementRef);
+        super(elementRef);
     }
 
     @HostBinding('class')
@@ -101,7 +100,7 @@ export class FormItem extends Row {
             [`${this.prefixCls}-item-no-colon`]: !this.colon
         };
 
-        return classNames(rowClassName, itemClassName, this.class);
+        return classnames(rowClassName, itemClassName, this.class);
     }
 
     getControlWrapperClasses(): any {

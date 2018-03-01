@@ -1,0 +1,19 @@
+@import "../../style/themes/default";
+
+$checkbox-prefix-cls: #{$ant-prefix}-checkbox;
+$checkbox-inner-prefix-cls: #{$checkbox-prefix-cls}-inner;
+
+.#{$checkbox-prefix-cls}-wrapper + span,
+.#{$checkbox-prefix-cls} + span {
+    display: inline-block;
+}
+
+.has-error {
+    .#{$checkbox-prefix-cls}-checked,
+    .#{$checkbox-prefix-cls}-indeterminate {
+        .#{$checkbox-inner-prefix-cls} {
+            background-color: $error-color;
+            border-color: $error-color;
+        }
+    }
+}

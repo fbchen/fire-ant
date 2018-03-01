@@ -7,15 +7,14 @@
  */
 
 
-import { Directive, Input, ElementRef, Renderer, HostBinding, Optional, Self } from '@angular/core';
+import { Directive, Input, HostBinding, Optional, Self } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import classNames from 'classnames';
+import { classnames } from '../util/classnames';
 
 import { AbstractForm } from './abstract.form';
 
 @Directive({
-    // tslint:disable-next-line:directive-selector
-    selector: 'form',
+    selector: 'form:not([ngNoForm]):not([formGroup]),ngForm,[ngForm]',
     exportAs: 'faForm'
 })
 export class FormDirective extends AbstractForm {
@@ -32,10 +31,7 @@ export class FormDirective extends AbstractForm {
     /** 用户CSS样式 */
     @Input() class: string;
 
-    constructor(
-        private _renderer: Renderer,
-        private _elementRef: ElementRef,
-        @Optional() @Self() form: NgForm) {
+    constructor( @Optional() @Self() form: NgForm ) {
         super(form);
     }
 
@@ -45,11 +41,12 @@ export class FormDirective extends AbstractForm {
     }
 
     getFormClasses(): string {
-        return classNames(this.prefixCls, {
+        return classnames(this.prefixCls, {
             [`${this.prefixCls}-horizontal`]: this.isHorizontal(),
             [`${this.prefixCls}-vertical`]: this.isVertical(),
             [`${this.prefixCls}-inline`]: this.isInline(),
             [`${this.prefixCls}-hide-required-mark`]: this.hideRequiredMark,
+            [`ng-submitted`]: this.isSubmitted() // 增加AngularJS1.0样式
         }, this.class);
     }
 

@@ -20,8 +20,9 @@
 >
     <div [ngClass]="getControlClasses()">
         <ng-content></ng-content>
-        <div class="{{prefixCls}}-explain" *ngIf="help || customHelp">
-            {{help}}<ng-content select="form-help"></ng-content>
+        <div class="{{prefixCls}}-explain" *ngIf="help || anyHelp">
+            {{help}}
+            <ng-template *ngIf="anyHelp" [ngTemplateOutlet]="anyHelp"></ng-template>
         </div>
         <div class="{{prefixCls}}-extra" *ngIf="extra">{{extra}}</div>
     </div>

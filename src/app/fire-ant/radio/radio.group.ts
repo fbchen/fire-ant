@@ -7,11 +7,11 @@
  */
 
 
-import { Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { HostBinding, HostListener, Inject, Optional, ContentChildren, QueryList, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
-import classNames from 'classnames';
+import { classnames } from '../util/classnames';
 
 import { FormControl } from '../input/form.control';
 import { Radio } from './radio';
@@ -50,9 +50,9 @@ export class RadioGroup extends FormControl {
     @ContentChildren(forwardRef(() => Radio), { descendants: true }) children: QueryList<Radio>;
 
     constructor(
-        private renderer: Renderer,
-        private elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) private compositionMode: boolean) {
+        public renderer: Renderer2,
+        public elementRef: ElementRef,
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) public compositionMode: boolean) {
 
         super(renderer, elementRef, compositionMode);
     }
@@ -60,7 +60,7 @@ export class RadioGroup extends FormControl {
     /** 样式 */
     @HostBinding('class')
     get classes(): string {
-        const classes = classNames(this.prefixCls, {
+        const classes = classnames(this.prefixCls, {
             [`${this.prefixCls}-${this.size}`]: this.size
         }, this.class);
         return classes;
@@ -83,7 +83,7 @@ export class RadioGroup extends FormControl {
     toggle(value: any, checked: boolean): void {
         if (typeof value !== 'undefined') {
             this.value = value;
-            this.onChange(this.value);
+            this.onChange(this.value); // Angular need this
             this.change.emit(this.value);
             this.toggleChildren();
         }

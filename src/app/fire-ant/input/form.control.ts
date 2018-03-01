@@ -6,7 +6,7 @@
  * found in the LICENSE file.
  */
 
-import { Input, Renderer, ElementRef, Inject, Optional } from '@angular/core';
+import { Input, Renderer2, ElementRef, Inject, Optional } from '@angular/core';
 import { DefaultValueAccessor } from '@angular/forms';
 import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
@@ -15,7 +15,7 @@ import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
  */
 // AOT编译时提示 Cannot determine the module for class FormControl in **.ts, so comment out `abstract`
 export /*abstract*/ class FormControl extends DefaultValueAccessor {
-    /** @internal */
+    /** 控件计数器 */
     public static count = 0;
 
     /** 控件ID: 输入框的 id */
@@ -47,15 +47,15 @@ export /*abstract*/ class FormControl extends DefaultValueAccessor {
     @Input() additionalCls: string;
 
 
-    /** @internal */
+    /** 注册控件 */
     public static registerControl(): string {
         return 'ant-control-' + (++FormControl.count).toString();
     }
 
     constructor(
-        @Inject(Renderer) private __renderer: Renderer,
-        @Inject(ElementRef) private __elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) private __compositionMode: boolean) {
+        @Inject(Renderer2) public __renderer: Renderer2,
+        @Inject(ElementRef) public __elementRef: ElementRef,
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) public __compositionMode: boolean) {
         super(__renderer, __elementRef, __compositionMode);
         this.id = FormControl.registerControl();
     }

@@ -632,8 +632,8 @@ tags模式：
         </tr>
         <tr>
             <td>Tree 树形控件</td>
-            <td> </td>
-            <td>待开发 (Pending)</td>
+            <td>&lt;ant-tree&gt;</td>
+            <td>已完成 (Done)</td>
         </tr>
         <tr>
             <td>Tooltip 文字提示器</td>
@@ -702,6 +702,11 @@ tags模式：
         <p>Content</p>
     </popover-content>
 </ant-button>
+```
+
+> Tree 树形控件：
+```html
+<ant-tree [roots]="children" [checkable]="true" (check)="onCheck($event)"></ant-tree>
 ```
 
 > Tooltip 文字提示器：
@@ -1067,14 +1072,3 @@ label.
 
 我们欢迎任何形式的贡献，有任何建议或意见您可以进行 [Pull Request](https://github.com/fbchen/fire-ant-example/pulls)，或者给我们 [提问](https://github.com/fbchen/fire-ant-example/issues)。
 
-##DONATIONS
-
-If you find fire-ant helpful, please consider making a donation (of cash,
-software, or hardware) to support continued work on the project. You can
-donate through 支付宝/Alipay or 微信/WeChat by scanning qrcodes as follows:
-
-![image](https://github.com/fbchen/fire-ant-example/raw/master/.github/images/alipay.jpg)
-![image](https://github.com/fbchen/fire-ant-example/raw/master/.github/images/wcpay.jpg)
-
-
-[contributing]: https://github.com/fbchen/fire-ant-example/.github/CONTRIBUTING.md
