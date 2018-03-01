@@ -7,7 +7,7 @@
  */
 
 
-import { Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { OnInit, HostListener, Inject, Optional, ContentChildren, QueryList, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
@@ -15,9 +15,9 @@ import { FormControl } from '../input/form.control';
 import { Checkbox } from './checkbox';
 
 
-function toArray(value) {
+function toArray(value: any): any[] {
     let ret = value;
-    if (value === undefined) {
+    if (value === undefined || value === null) {
         ret = [];
     } else if (!Array.isArray(value)) {
         ret = [value];
@@ -52,9 +52,9 @@ export class CheckboxGroup extends FormControl implements OnInit {
     @ContentChildren(forwardRef(() => Checkbox), {descendants: true}) children: QueryList<Checkbox>;
 
     constructor(
-        private renderer: Renderer,
-        private elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) private compositionMode: boolean) {
+        public renderer: Renderer2,
+        public elementRef: ElementRef,
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) public compositionMode: boolean) {
 
         super(renderer, elementRef, compositionMode);
         this.value = [];
@@ -92,7 +92,7 @@ export class CheckboxGroup extends FormControl implements OnInit {
             if (!checked && contains) {
                 this.value = array.filter(v => v !== value);
             }
-            this.onChange(this.value);
+            this.onChange(this.value); // Angular need this
             this.change.emit(this.value);
         }
     }

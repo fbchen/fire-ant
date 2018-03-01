@@ -7,7 +7,7 @@
  */
 
 
-import { Component, Input, Output, EventEmitter, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { OnInit, Inject, Optional, Host, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
@@ -23,7 +23,7 @@ const INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
     selector: 'ant-radio',
     templateUrl: './radio.html',
-    styleUrls: ['./style/index.scss'],
+    styleUrls: ['./style/index.scss', './style/patch.scss'],
     encapsulation: ViewEncapsulation.None,
     providers: [INPUT_CONTROL_VALUE_ACCESSOR],
     exportAs: 'radio'
@@ -68,9 +68,9 @@ export class Radio extends FormControl implements OnInit {
     private _disabled = false;
 
     constructor(
-        private renderer: Renderer,
-        private elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) private compositionMode: boolean,
+        renderer: Renderer2,
+        elementRef: ElementRef,
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) compositionMode: boolean,
         @Inject(forwardRef(() => RadioGroup)) @Optional() @Host() private group: RadioGroup) {
 
         super(renderer, elementRef, compositionMode);
@@ -132,7 +132,7 @@ export class Radio extends FormControl implements OnInit {
         this.checked = !this.checked;
 
         const value = this.checked ? this.value : (this.uncheckedValue || '');
-        this.onChange(value);
+        this.onChange(value); // Angular need this
         this.check.emit(this.checked);
         this.change.emit(value);
         this.makeGroupChange();

@@ -12,6 +12,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'form-help',
     template: `<ng-content></ng-content>`,
+    styleUrls: ['./style/form-help.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class FormHelp {

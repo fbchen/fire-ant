@@ -9,10 +9,6 @@ $radio-duration: .3s;
 .#{$radio-group-prefix-cls} {
   display: inline-block;
   font-size: $font-size-base;
-
-  &[mode=button]> #{$radio-prefix-cls} {
-      float: left;
-  }
 }
 
 // 一般状态

@@ -1,0 +1,18 @@
+@import "../../style/themes/default";
+
+$radio-prefix-cls: #{$ant-prefix}-radio;
+$radio-group-prefix-cls: #{$radio-prefix-cls}-group;
+
+.#{$radio-group-prefix-cls} {
+
+    &[mode=button]> #{$radio-prefix-cls} {
+        float: left;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+        width: 0;
+    }
+}
