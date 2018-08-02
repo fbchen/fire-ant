@@ -1,0 +1,72 @@
+<div *ngIf="type == 'line'">
+    <div class="{{prefixCls}}-outer">
+        <div class="{{prefixCls}}-inner">
+            <div class="{{prefixCls}}-bg" [ngStyle]="getLineStyle()"></div>
+        </div>
+    </div>
+
+    <span class="{{prefixCls}}-text" *ngIf="showInfo">
+        <ng-template *ngIf="infoRender"
+            [ngTemplateOutlet]="infoRender"
+            [ngTemplateOutletContext]="{ $implicit: {percent: percent, status: status} }">
+        </ng-template>
+        <ng-container *ngIf="!infoRender">
+            <ng-container *ngIf="getProgressStatus() == 'exception'">
+                <ng-container *ngIf="format">{{format(percent)}}</ng-container>
+                <ng-container *ngIf="!format">
+                    <ant-icon type="cross{{getIconType()}}"></ant-icon>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="getProgressStatus() == 'success'">
+                <ng-container *ngIf="format">{{format(percent)}}</ng-container>
+                <ng-container *ngIf="!format">
+                    <ant-icon type="check{{getIconType()}}"></ant-icon>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="getProgressStatus() !== 'success' && getProgressStatus() !== 'exception'">
+                <ng-container *ngIf="format">{{format(percent)}}</ng-container>
+                <ng-container *ngIf="!format">{{percent}}%</ng-container>
+            </ng-container>
+        </ng-container>
+    </span>
+</div>
+
+<div *ngIf="type == 'circle' || type == 'dashboard'"
+    class="{{prefixCls}}-inner" [ngStyle]="getCircleStyle()">
+    <ant-circle
+        [percent]="percent"
+        [strokeWidth]="strokeWidth || 6"
+        [trailWidth]="strokeWidth || 6"
+        [strokeColor]="getCircleColor()"
+        [trailColor]="trailColor"
+        [prefixCls]="prefixCls"
+        [gapDegree]="getCircleGapDegree()"
+        [gapPosition]="getCircleGapPosition()"
+    >
+    </ant-circle>
+
+    <span class="{{prefixCls}}-text" *ngIf="showInfo">
+        <ng-template *ngIf="infoRender"
+            [ngTemplateOutlet]="infoRender"
+            [ngTemplateOutletContext]="{ $implicit: {percent: percent, status: status} }">
+        </ng-template>
+        <ng-container *ngIf="!infoRender">
+            <ng-container *ngIf="getProgressStatus() == 'exception'">
+                <ng-container *ngIf="format">{{format(percent)}}</ng-container>
+                <ng-container *ngIf="!format">
+                    <ant-icon type="cross{{getIconType()}}"></ant-icon>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="getProgressStatus() == 'success'">
+                <ng-container *ngIf="format">{{format(percent)}}</ng-container>
+                <ng-container *ngIf="!format">
+                    <ant-icon type="check{{getIconType()}}"></ant-icon>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="getProgressStatus() !== 'success' && getProgressStatus() !== 'exception'">
+                <ng-container *ngIf="format">{{format(percent)}}</ng-container>
+                <ng-container *ngIf="!format">{{percent}}%</ng-container>
+            </ng-container>
+        </ng-container>
+    </span>
+</div>

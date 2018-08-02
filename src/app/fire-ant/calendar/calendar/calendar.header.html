@@ -1,0 +1,95 @@
+<div style="position: relative">
+    <a *ngIf="enablePrev && !isTimePickerVisible"
+        class="{{prefixCls}}-prev-year-btn"
+        role="button"
+        (click)="previousYear($event)"
+        [attr.title]="locale.previousYear"
+    ></a>
+    <a *ngIf="enablePrev && !isTimePickerVisible"
+        class="{{prefixCls}}-prev-month-btn"
+        role="button"
+        (click)="previousMonth($event)"
+        [attr.title]="locale.previousMonth"
+    ></a>
+
+    <span [ngClass]="monthYearElClass">
+        <div *ngIf="isMonthBeforeYear()">
+            <a
+                class="{{prefixCls}}-month-select"
+                role="button"
+                (click)="showMonthPanel($event)"
+                [attr.title]="locale.monthSelect"
+            >
+                {{getLocaleData().monthsShort(value)}}
+            </a>
+            <a *ngIf="showTimePicker"
+                class="{{prefixCls}}-day-select"
+                role="button"
+            >
+                {{value.format(locale.dayFormat)}}
+            </a>
+            <a
+                class="{{prefixCls}}-year-select"
+                role="button"
+                (click)="showYearPanel($event)"
+                [attr.title]="locale.yearSelect"
+            >
+                {{value.format(locale.yearFormat)}}
+            </a>
+        </div>
+        <div *ngIf="!isMonthBeforeYear()">
+            <a
+                class="{{prefixCls}}-year-select"
+                role="button"
+                (click)="showYearPanel($event)"
+                [attr.title]="locale.yearSelect"
+            >
+                {{value.format(locale.yearFormat)}}
+            </a>
+            <a
+                class="{{prefixCls}}-month-select"
+                role="button"
+                (click)="showMonthPanel($event)"
+                [attr.title]="locale.monthSelect"
+            >
+                {{getLocaleData().monthsShort(value)}}
+            </a>
+            <a *ngIf="showTimePicker"
+                class="{{prefixCls}}-day-select"
+                role="button"
+            >
+                {{value.format(locale.dayFormat)}}
+            </a>
+        </div>
+    </span>
+
+
+    <a *ngIf="enableNext && !isTimePickerVisible"
+        class="{{prefixCls}}-next-month-btn"
+        (click)="nextMonth($event)"
+        [attr.title]="locale.nextMonth"
+    ></a>
+    <a *ngIf="enableNext && !isTimePickerVisible"
+        class="{{prefixCls}}-next-year-btn"
+        (click)="nextYear($event)"
+        [attr.title]="locale.nextYear"
+    ></a>
+</div>
+
+<ant-month-panel *ngIf="isMonthPanelVisible"
+    prefixCls="{{prefixCls}}-month-panel"
+    [rootPrefixCls]="prefixCls"
+    [locale]="locale"
+    [value]="value"
+    [disabledMonth]="disabledMonth"
+    (valueUpdate)="onSelectDecadeOrCentury($event)"
+    (change)="onSelectMonthOrYear($event)">
+</ant-month-panel>
+<ant-year-panel *ngIf="isYearPanelVisible"
+    prefixCls="{{prefixCls}}-year-panel"
+    [rootPrefixCls]="prefixCls"
+    [locale]="locale"
+    [value]="value"
+    (valueUpdate)="onSelectDecadeOrCentury($event)"
+    (change)="onSelectMonthOrYear($event)">
+</ant-year-panel>

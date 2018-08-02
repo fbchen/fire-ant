@@ -1,0 +1,7 @@
+@import "../../style/themes/default";
+
+$steps-prefix-cls: #{$ant-prefix}-steps;
+
+.#{$steps-prefix-cls} {
+    display: block;
+}

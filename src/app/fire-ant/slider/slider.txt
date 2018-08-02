@@ -1,0 +1,57 @@
+/**
+ * @license
+ * Copyright 厦门乾元盛世科技有限公司 All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file.
+ */
+
+import { Component, Input, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
+import { classnames } from '../util/classnames';
+
+/**
+ * 语义化的矢量图形。<br>
+ * 我们为每个图标赋予了语义化的命名，命名规则如下:
+ * - 实心和描线图标保持同名，用 `-o` 来区分，比如 `question-circle`（实心） 和 `question-circle-o`（描线）；
+ * - 命名顺序：`[图标名]-[形状?]-[描线?]-[方向?]`。
+ * > `?` 为可选。<br>
+ * 完整的图标设计规范请访问 [图标规范](/docs/spec/icon)。<br>
+ * 由于图标字体本质上还是文字，可以使用 `style` 和 `className` 设置图标的大小和颜色。
+ */
+@Component({
+    selector: 'ant-icon',
+    template: `
+        <i [class]="classes"></i>
+    `,
+    encapsulation: ViewEncapsulation.None
+})
+export class Slider {
+
+    /** 设置图标类型 */
+    @Input() type: string;
+
+    /** 是否有旋转动画 */
+    @Input() spin = false;
+
+    /** 样式前缀 */
+    @Input() title: string;
+
+    /** 额外的CSS样式 */
+    @Input() class: string;
+
+
+    constructor(private _renderer: Renderer2, private _elementRef: ElementRef) {
+
+    }
+
+    /** 最终样式 */
+    get classes(): string {
+        const classes = classnames({
+            anticon: true,
+            'anticon-spin': !!this.spin || this.type === 'loading',
+            [`anticon-${this.type}`]: true
+        }, this.class);
+        return classes;
+    }
+
+}

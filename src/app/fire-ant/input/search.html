@@ -1,0 +1,11 @@
+<input #input [ngClass]="inputClass" [type]="type"
+    [attr.id]="id" [attr.name]="name" [attr.placeholder]="placeholder"
+    [attr.maxlength]="maxlength" [attr.minlength]="minlength" [pattern]="pattern"
+    [attr.max]="max" [attr.min]="min" [attr.autoComplete]="autoComplete"
+    [disabled]="disabled" [readOnly]="readOnly" [required]="required"
+    [(ngModel)]="innerValue" (keyup)="push(input.value)"
+    (blur)="onBlur($event)" (focus)="onFocus($event)"
+    (keydown)="handleKeyDown($event)" (keydown.enter)="onSearch()" />
+<span [class]="affixSuffixClass">
+    <ant-icon type="search" [ngClass]="searchIconClass"></ant-icon>
+</span>

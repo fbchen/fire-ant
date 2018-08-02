@@ -1,0 +1,64 @@
+<div>
+    <div class="{{prefixCls}}-header" *ngIf="showHeader">
+        <a
+            class="{{prefixCls}}-prev-year-btn"
+            role="button"
+            (click)="previousYear($event)"
+            [attr.title]="locale.previousYear"
+        ></a>
+
+        <a
+            class="{{prefixCls}}-year-select"
+            role="button"
+            (click)="showYearPanel($event)"
+            [attr.title]="locale.yearSelect"
+        >
+            <span class="{{prefixCls}}-year-select-content">{{value.year()}}</span>
+            <span class="{{prefixCls}}-year-select-arrow">x</span>
+        </a>
+
+        <a
+            class="{{prefixCls}}-next-year-btn"
+            role="button"
+            (click)="nextYear($event)"
+            [attr.title]="locale.nextYear"
+        ></a>
+    </div>
+    <div class="{{prefixCls}}-body">
+        <table class="{{prefixCls}}-table" cellSpacing="0" role="grid">
+            <tbody class="{{prefixCls}}-tbody">
+                <tr role="row" *ngFor="let monthRows of months">
+                    <td *ngFor="let month of monthRows"
+                        role="gridcell"
+                        [attr.title]="month.title"
+                        [ngClass]="getMonthCellClass(month)"
+                        (click)="onSelectMonth(month.month, $event)"
+                    >
+                        <ng-template *ngIf="cellRender"
+                            [ngTemplateOutlet]="cellRender"
+                            [ngTemplateOutletContext]="{ $implicit: {v: month, locale: locale} }">
+                        </ng-template>
+                        <a *ngIf="!cellRender" class="{{prefixCls}}-month">
+                            <ng-template *ngIf="cellContentRender"
+                                [ngTemplateOutlet]="cellContentRender"
+                                [ngTemplateOutletContext]="{ $implicit: {v: month, locale: locale} }">
+                            </ng-template>
+                            <ng-container *ngIf="!cellContentRender">
+                                {{month.content}}
+                            </ng-container>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ant-year-panel *ngIf="isYearPanelVisible"
+    prefixCls="{{rootPrefixCls}}-year-panel"
+    [rootPrefixCls]="rootPrefixCls"
+    [locale]="locale"
+    [value]="value"
+    (valueUpdate)="onDecadeSelect($event)"
+    (change)="onYearSelect($event)">
+</ant-year-panel>

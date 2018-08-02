@@ -1,0 +1,9 @@
+<input #input
+    type="text"
+    [ngClass]="pickerInputClasses"
+    [disabled]="disabled"
+    [readonly]="readOnly"
+    [required]="required"
+    [attr.placeholder]="placeholder"
+    [(ngModel)]="displayValue" />
+<span class="{{prefixCls}}-icon"></span>

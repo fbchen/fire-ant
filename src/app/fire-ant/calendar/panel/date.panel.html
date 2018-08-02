@@ -1,0 +1,61 @@
+<table class="{{prefixCls}}-table" cellSpacing="0" role="grid">
+    <thead>
+        <tr role="row">
+            <th *ngIf="showWeekNumber"
+                role="columnheader"
+                class="{{prefixCls}}-column-header {{prefixCls}}-week-number-header"
+            >
+                <span class="{{prefixCls}}-column-header-inner">x</span>
+            </th>
+            <th *ngFor="let day of weekDays"
+                role="columnheader"
+                class="{{prefixCls}}-column-header"
+                [attr.title]="day.name"
+            >
+                <span class="{{prefixCls}}-column-header-inner">
+                    {{day.shortName}}
+                </span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody class="{{prefixCls}}-tbody">
+        <tr *ngFor="let dayRows of days"
+          role="row"
+          [ngClass]="getDayRowClass(dayRows)"
+        >
+            <td *ngIf="showWeekNumber"
+                role="gridcell"
+                class="{{prefixCls}}-week-number-cell"
+            >
+                {{dayRows[0].week()}}
+            </td>
+            <td *ngFor="let day of dayRows"
+                (click)="onSelectDay(day, $event)"
+                (mouseenter)="onDayHover(day, $event)"
+                role="gridcell"
+                [attr.title]="getDayTitle(day.value)"
+                [ngClass]="getDayCellClass(day, dayRows)"
+            >
+                <ng-template *ngIf="dateCellRender"
+                    [ngTemplateOutlet]="dateCellRender"
+                    [ngTemplateOutletContext]="{ $implicit: {current: day.value, value: value} }">
+                </ng-template>
+                <div *ngIf="!dateCellRender"
+                    class="{{prefixCls}}-date"
+                    [attr.aria-selected]="day.isSelecting ? true: null"
+                    [attr.aria-disabled]="day.isDisabled  ? true: null"
+                >
+                    <ng-template *ngIf="dateCellContentRender"
+                        [ngTemplateOutlet]="dateCellContentRender"
+                        [ngTemplateOutletContext]="{ $implicit: {current: day.value, value: value} }">
+                    </ng-template>
+                    <ng-container *ngIf="!dateCellContentRender">
+                        {{day.date}}
+                    </ng-container>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

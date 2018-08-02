@@ -1,0 +1,24 @@
+<span class="{{prefixCls}}-footer-btn">
+    <a *ngIf="showToday"
+        role="button"
+        [ngClass]="todayButtonClass"
+        [attr.title]="getTodayButtonText()"
+        (click)="onToday($event)"
+    >
+        {{getTodayButtonText()}}
+    </a>
+    <a *ngIf="showTimePicker"
+        role="button"
+        [ngClass]="timePickerButtonClass"
+        (click)="onTimePickerBtnClick($event)"
+    >
+        {{isTimePickerVisible ? locale.dateSelect : locale.timeSelect}}
+    </a>
+    <a *ngIf="showOkButton()"
+        role="button"
+        [ngClass]="okButtonClass"
+        (click)="onOk($event)"
+    >
+        {{locale.ok}}
+    </a>
+</span>

@@ -1,0 +1,123 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+
+$btn-prefix-cls: #{$ant-prefix}-btn;
+$btnClassName: $btn-prefix-cls;
+$btnControlName: #{$ant-prefix}-button;
+
+
+.#{$btn-prefix-cls}-group {
+  position: relative;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+
+  > #{$btnControlName} > .#{$btnClassName} {
+    position: relative;
+    z-index: 1;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+
+    &:disabled {
+      z-index: 0;
+    }
+  }
+
+  // size
+  &-lg > #{$btnControlName} > .#{$btnClassName} {
+    @include button-size($btn-height-lg, $btn-padding-lg, $btn-font-size-lg, $btn-border-radius-base);
+  }
+
+  &-sm > #{$btnControlName} > .#{$btnClassName} {
+    @include button-size($btn-height-sm, $btn-padding-sm, $font-size-base, $btn-border-radius-sm);
+    > .#{$iconfont-css-prefix} {
+      font-size: $font-size-base;
+    }
+  }
+
+  //
+  #{$btnControlName}+#{$btnControlName},
+  #{$btnControlName}+&,
+  #{$btnControlName}+.#{$btnClassName},
+  .#{$btnClassName}+#{$btnControlName},
+  &+#{$btnControlName},
+  &+& {
+    margin-left: -1px;
+  }
+
+  #{$btnControlName}:not(:first-child):not(:last-child)>.#{$btnClassName} {
+    border-radius: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  >#{$btnControlName}:first-child {
+    >.#{$btnClassName} {
+      margin-left: 0;
+    }
+    &:not(:last-child)>.#{$btnClassName} {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-right: 8px;
+    }
+  }
+
+  >#{$btnControlName}:last-child:not(:first-child)>.#{$btnClassName} {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
+  }
+
+  &>#{$btnControlName}:not(:first-child):not(:last-child)>.#{$btnClassName} {
+    border-radius: 0;
+  }
+
+  &>#{$btnControlName}:first-child:not(:last-child)>.#{$btnClassName} {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    padding-right: 8px;
+  }
+
+  &>#{$btnControlName}:last-child:not(:first-child)>.#{$btnClassName} {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
+  }
+}
+
+.#{$btn-prefix-cls} {
+  &-primary {
+
+    .#{$btn-prefix-cls}-group #{$btnControlName}:not(:first-child):not(:last-child) > & {
+      border-right-color: $btn-group-border;
+      border-left-color: $btn-group-border;
+
+      &:disabled {
+        border-color: $btn-default-border;
+      }
+    }
+
+    .#{$btn-prefix-cls}-group #{$btnControlName}:first-child:not(:last-child) > & {
+        border-right-color: $btn-group-border;
+        &[disabled] {
+          border-right-color: $btn-default-border;
+        }
+    }
+
+    .#{$btn-prefix-cls}-group #{$btnControlName}:last-child:not(:first-child) > &,
+    .#{$btn-prefix-cls}-group #{$btnControlName} + #{$btnControlName} {
+      & {
+        border-left-color: $btn-group-border;
+      }
+      &[disabled] {
+        border-left-color: $btn-default-border;
+      }
+    }
+  }
+}

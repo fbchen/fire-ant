@@ -1,0 +1,15 @@
+<div class="{{prefixCls}}-date-input-wrap">
+    <input
+        [ngClass]="inputClassName"
+        [disabled]="disabled"
+        [attr.placeholder]="placeholder"
+        [readonly]="readOnly"
+        [(ngModel)]="innerValue"
+        (change)="onInputChange($event)"
+    />
+</div>
+<a *ngIf="isClearIconVisible()"
+    class="{{prefixCls}}-clear-btn"
+    role="button"
+    [attr.title]="locale?.clear"
+    (click)="onClear($event)"></a>

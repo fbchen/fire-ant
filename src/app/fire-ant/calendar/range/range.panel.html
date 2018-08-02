@@ -1,0 +1,52 @@
+<ant-date-input
+    [prefixCls]="prefixCls"
+    [format]="format"
+    [value]="getValue()"
+    [locale]="locale"
+    [placeholder]="placeholder"
+    [allowClear]="false"
+    [disabledDate]="disabledDate"
+    (change)="selectDateValue($event)"
+></ant-date-input>
+
+<div style="outline: none">
+    <ant-calendar-header
+        [prefixCls]="prefixCls"
+        [locale]="locale"
+        [showTimePicker]="showTimePicker"
+        [isTimePickerVisible]="isTimePickerVisible"
+        [enableNext]="enableNext"
+        [enablePrev]="enablePrev"
+        [value]="value"
+        [disabledMonth]="disabledMonth"
+        (valueUpdate)="setValue($event)"
+    ></ant-calendar-header>
+
+    <div *ngIf="isTimePickerVisible" class="{{prefixCls}}-time-picker">
+        <ant-time-panel
+            prefixCls="{{prefixCls}}-time-picker"
+            panelCls="{{prefixCls}}-time-picker-panel"
+            [locale]="locale"
+            [value]="getValue()"
+            [disabledHours]="disabledHours"
+            [disabledMinutes]="disabledMinutes"
+            [disabledSeconds]="disabledSeconds"
+            (valueUpdate)="selectTimeValue($event)">
+        </ant-time-panel>
+    </div>
+
+    <div class="{{prefixCls}}-body">
+        <ant-date-panel
+            [prefixCls]="prefixCls"
+            [locale]="locale"
+            [value]="value"
+            [selectedValue]="selectedValue"
+            [hoverValue]="hoverValue"
+            [disabledDate]="disabledDate"
+            [isRangePicker]="true"
+            [showWeekNumber]="showWeekNumber"
+            (valueUpdate)="selectDateValue($event)"
+            (dayHover)="onDayHover($event)"
+        ></ant-date-panel>
+    </div>
+</div>

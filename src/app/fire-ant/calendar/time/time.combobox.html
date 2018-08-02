@@ -1,0 +1,21 @@
+<ant-time-option *ngIf="showHour"
+    prefixCls="{{prefixCls}}-select"
+    [options]="hourOptions"
+    [hideDisabledOptions]="hideDisabledOptions"
+    [selectedIndex]="getHourSelectedIndex()"
+    (valueUpdate)="onItemChange('hour', $event)">
+</ant-time-option>
+<ant-time-option *ngIf="showMinute"
+    prefixCls="{{prefixCls}}-select"
+    [options]="minuteOptions"
+    [hideDisabledOptions]="hideDisabledOptions"
+    [selectedIndex]="getMinuteSelectedIndex()"
+    (valueUpdate)="onItemChange('minute', $event)">
+</ant-time-option>
+<ant-time-option *ngIf="showSecond"
+    prefixCls="{{prefixCls}}-select"
+    [options]="secondOptions"
+    [hideDisabledOptions]="hideDisabledOptions"
+    [selectedIndex]="getSecondSelectedIndex()"
+    (valueUpdate)="onItemChange('second', $event)">
+</ant-time-option>

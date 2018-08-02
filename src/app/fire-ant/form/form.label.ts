@@ -12,6 +12,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'form-label',
     template: `<ng-content></ng-content>`,
+    preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None
 })
 export class FormLabel {

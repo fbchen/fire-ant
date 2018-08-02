@@ -1,0 +1,100 @@
+//@import 'colorPalette';
+@import 'colorFunction';
+@import 'colorFunction2';
+
+// color palettes
+$blue-6: #108ee9;
+$blue-1: fb-colorPalette($blue-6, 1);
+$blue-2: fb-colorPalette($blue-6, 2);
+$blue-3: fb-colorPalette($blue-6, 3);
+$blue-4: fb-colorPalette($blue-6, 4);
+$blue-5: fb-colorPalette($blue-6, 5);
+$blue-7: fb-colorPalette($blue-6, 7);
+$blue-8: fb-colorPalette($blue-6, 8);
+$blue-9: fb-colorPalette($blue-6, 9);
+$blue-10: fb-colorPalette($blue-6, 10);
+$blue-list: $blue-1, $blue-2, $blue-3, $blue-4, $blue-5, $blue-6, $blue-7, $blue-8, $blue-9, $blue-10;
+
+$purple-6: #7265e6;
+$purple-1: fb-colorPalette($purple-6, 1);
+$purple-2: fb-colorPalette($purple-6, 2);
+$purple-3: fb-colorPalette($purple-6, 3);
+$purple-4: fb-colorPalette($purple-6, 4);
+$purple-5: fb-colorPalette($purple-6, 5);
+$purple-7: fb-colorPalette($purple-6, 7);
+$purple-8: fb-colorPalette($purple-6, 8);
+$purple-9: fb-colorPalette($purple-6, 9);
+$purple-10: fb-colorPalette($purple-6, 10);
+$purple-list: $purple-1, $purple-2, $purple-3, $purple-4, $purple-5, $purple-6, $purple-7, $purple-8, $purple-9, $purple-10;
+
+$cyan-6: #00a2ae;
+$cyan-1: fb-colorPalette($cyan-6, 1);
+$cyan-2: fb-colorPalette($cyan-6, 2);
+$cyan-3: fb-colorPalette($cyan-6, 3);
+$cyan-4: fb-colorPalette($cyan-6, 4);
+$cyan-5: fb-colorPalette($cyan-6, 5);
+$cyan-7: fb-colorPalette($cyan-6, 7);
+$cyan-8: fb-colorPalette($cyan-6, 8);
+$cyan-9: fb-colorPalette($cyan-6, 9);
+$cyan-10: fb-colorPalette($cyan-6, 10);
+$cyan-list: $cyan-1, $cyan-2, $cyan-3, $cyan-4, $cyan-5, $cyan-6, $cyan-7, $cyan-8, $cyan-9, $cyan-10;
+
+$green-6: #00a854;
+$green-1: fb-colorPalette($green-6, 1);
+$green-2: fb-colorPalette($green-6, 2);
+$green-3: fb-colorPalette($green-6, 3);
+$green-4: fb-colorPalette($green-6, 4);
+$green-5: fb-colorPalette($green-6, 5);
+$green-7: fb-colorPalette($green-6, 7);
+$green-8: fb-colorPalette($green-6, 8);
+$green-9: fb-colorPalette($green-6, 9);
+$green-10: fb-colorPalette($green-6, 10);
+$green-list: $green-1, $green-2, $green-3, $green-4, $green-5, $green-6, $green-7, $green-8, $green-9, $green-10;
+
+$pink-6: #f5317f;
+$pink-1: fb-colorPalette($pink-6, 1);
+$pink-2: fb-colorPalette($pink-6, 2);
+$pink-3: fb-colorPalette($pink-6, 3);
+$pink-4: fb-colorPalette($pink-6, 4);
+$pink-5: fb-colorPalette($pink-6, 5);
+$pink-7: fb-colorPalette($pink-6, 7);
+$pink-8: fb-colorPalette($pink-6, 8);
+$pink-9: fb-colorPalette($pink-6, 9);
+$pink-10: fb-colorPalette($pink-6, 10);
+$pink-list: $pink-1, $pink-2, $pink-3, $pink-4, $pink-5, $pink-6, $pink-7, $pink-8, $pink-9, $pink-10;
+
+$red-6: #f04134;
+$red-1: fb-colorPalette($red-6, 1);
+$red-2: fb-colorPalette($red-6, 2);
+$red-3: fb-colorPalette($red-6, 3);
+$red-4: fb-colorPalette($red-6, 4);
+$red-5: fb-colorPalette($red-6, 5);
+$red-7: fb-colorPalette($red-6, 7);
+$red-8: fb-colorPalette($red-6, 8);
+$red-9: fb-colorPalette($red-6, 9);
+$red-10: fb-colorPalette($red-6, 10);
+$red-list: $red-1, $red-2, $red-3, $red-4, $red-5, $red-6, $red-7, $red-8, $red-9, $red-10;
+
+$orange-6: #f56a00;
+$orange-1: fb-colorPalette($orange-6, 1);
+$orange-2: fb-colorPalette($orange-6, 2);
+$orange-3: fb-colorPalette($orange-6, 3);
+$orange-4: fb-colorPalette($orange-6, 4);
+$orange-5: fb-colorPalette($orange-6, 5);
+$orange-7: fb-colorPalette($orange-6, 7);
+$orange-8: fb-colorPalette($orange-6, 8);
+$orange-9: fb-colorPalette($orange-6, 9);
+$orange-10: fb-colorPalette($orange-6, 10);
+$orange-list: $orange-1, $orange-2, $orange-3, $orange-4, $orange-5, $orange-6, $orange-7, $orange-8, $orange-9, $orange-10;
+
+$yellow-6: #ffbf00;
+$yellow-1: fb-colorPalette($yellow-6, 1);
+$yellow-2: fb-colorPalette($yellow-6, 2);
+$yellow-3: fb-colorPalette($yellow-6, 3);
+$yellow-4: fb-colorPalette($yellow-6, 4);
+$yellow-5: fb-colorPalette($yellow-6, 5);
+$yellow-7: fb-colorPalette($yellow-6, 7);
+$yellow-8: fb-colorPalette($yellow-6, 8);
+$yellow-9: fb-colorPalette($yellow-6, 9);
+$yellow-10: fb-colorPalette($yellow-6, 10);
+$yellow-list: $yellow-1, $yellow-2, $yellow-3, $yellow-4, $yellow-5, $yellow-6, $yellow-7, $yellow-8, $yellow-9, $yellow-10;

@@ -1,0 +1,20 @@
+<svg [ngClass]="canvasClass" viewBox="0 0 100 100">
+    <path
+        [ngClass]="circleTrailClass"
+        [attr.stroke]="trailColor"
+        [attr.stroke-width]="trailWidth || strokeWidth"
+        [attr.fill-opacity]="0"
+        [attr.d]="circleData.pathString"
+        [ngStyle]="circleData.trailPathStyle"
+    ></path>
+
+    <path *ngIf="showCirclePath"
+        [ngClass]="circlePathClass"
+        [attr.stroke]="strokeColor"
+        [attr.stroke-width]="strokeWidth"
+        [attr.fill-opacity]="0"
+        [attr.stroke-linecap]="strokeLinecap"
+        [attr.d]="circleData.pathString"
+        [ngStyle]="circleData.strokePathStyle"
+    ></path>
+</svg>

@@ -1,0 +1,8 @@
+<ng-container *ngIf="text">{{text}}</ng-container>
+<ng-container *ngIf="!text">
+    <span *ngFor="let item of digits"
+        [class]="digitItemClass" [ngStyle]="item.styleMap">
+        <p *ngFor="let n of numItems"
+            [class]="item.position==n ? 'current' : ''">{{n % 10}}</p>
+    </span>
+</ng-container>

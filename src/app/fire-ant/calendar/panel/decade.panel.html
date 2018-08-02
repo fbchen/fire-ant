@@ -1,0 +1,34 @@
+<div class="{{prefixCls}}-header">
+    <a
+        class="{{prefixCls}}-prev-century-btn"
+        role="button"
+        (click)="previousCentury($event)"
+        [attr.title]="locale.previousCentury"
+    ></a>
+    <div class="{{prefixCls}}-century">
+        {{startYear}}-{{endYear}}
+    </div>
+    <a
+        class="{{prefixCls}}-next-century-btn"
+        role="button"
+        (click)="nextCentury($event)"
+        [attr.title]="locale.nextCentury"
+    ></a>
+</div>
+<div class="{{prefixCls}}-body">
+    <table class="{{prefixCls}}-table" cellSpacing="0" role="grid">
+        <tbody class="{{prefixCls}}-tbody">
+            <tr role="row" *ngFor="let yearRows of decades">
+                <td *ngFor="let decade of yearRows"
+                    role="gridcell"
+                    (click)="onSelectDecade(decade, $event)"
+                    [ngClass]="getDecadeCellClass(decade)"
+                >
+                    <a class="{{prefixCls}}-decade">
+                        {{decade.startYear}}-{{decade.endYear}}
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$progress-prefix-cls: #{$ant-prefix}-progress;
+
+#{$progress-prefix-cls} {
+  display: inline-block;
+}
+
+.#{$progress-prefix-cls} {
+    > div {
+        white-space: nowrap;
+    }
+}

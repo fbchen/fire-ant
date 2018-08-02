@@ -1,0 +1,85 @@
+<div class="{{prefixCls}}-header">
+    <ant-select
+        class="{{prefixCls}}-year-select"
+        [size]="fullscreen ? 'default' : 'small'"
+        [(ngModel)]="_year"
+        (ngModelChange)="onYearChange($event)"
+    >
+        <ant-option *ngFor="let y of years" [value]="y.value">
+            {{y.text}}
+        </ant-option>
+    </ant-select>
+
+    <ant-select *ngIf="mode == 'month'"
+        class="{{prefixCls}}-month-select"
+        [size]="fullscreen ? 'default' : 'small'"
+        [(ngModel)]="_month"
+        (ngModelChange)="onMonthChange($event)"
+    >
+        <ant-option *ngFor="let m of months" [value]="m.value">
+            {{m.text}}
+        </ant-option>
+    </ant-select>
+
+    <ant-radio-group
+        mode="button"
+        [size]="fullscreen ? 'default' : 'small'"
+        [(ngModel)]="mode" (change)="onModeChange($event)">
+        <ant-radio value="month">{{locale.month}}</ant-radio>
+        <ant-radio value="year">{{locale.year}}</ant-radio>
+    </ant-radio-group>
+</div>
+
+<div [ngClass]="calendarWarpClass">
+    <div class="{{prefixCls}}-calendar-body">
+        <ant-month-panel *ngIf="mode == 'year'"
+            prefixCls="{{prefixCls}}-month-panel"
+            [rootPrefixCls]="prefixCls"
+            [showHeader]="false"
+            [locale]="locale"
+            [value]="value"
+            [cellRender]="monthCellRender || defaultMonthCellRender"
+            [disabledMonth]="disabledDate"
+            (change)="onValueChange($event)"
+        >
+        </ant-month-panel>
+
+        <ant-date-panel *ngIf="mode == 'month'"
+            [prefixCls]="prefixCls"
+            [locale]="locale"
+            [value]="value"
+            [dateCellRender]="dateCellRender || defaultDateCellRender"
+            [disabledDate]="disabledDate"
+            (valueUpdate)="onValueChange($event)"
+        >
+        </ant-date-panel>
+    </div>
+</div>
+
+<ng-template #defaultDateCellRender let-context>
+    <div class="{{prefixCls}}-date">
+        <div class="{{prefixCls}}-value">
+            {{_zerofixed(context.current.date())}}
+        </div>
+        <div class="{{prefixCls}}-content">
+            <ng-template *ngIf="dateCellContentRender"
+                [ngTemplateOutlet]="dateCellContentRender"
+                [ngTemplateOutletContext]="{ $implicit: context }">
+            </ng-template>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #defaultMonthCellRender let-context>
+    <div class="{{prefixCls}}-month">
+        <div class="{{prefixCls}}-value">
+            {{context.v.content}}
+        </div>
+        <div class="{{prefixCls}}-content">
+            <ng-template *ngIf="monthCellContentRender"
+                [ngTemplateOutlet]="monthCellContentRender"
+                [ngTemplateOutletContext]="{ $implicit: context }">
+            </ng-template>
+        </div>
+    </div>
+</ng-template>

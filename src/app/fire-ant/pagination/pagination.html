@@ -1,0 +1,148 @@
+<ng-container *ngIf="simple">
+    <ul [ngClass]="getPaginationClass()">
+        <li
+            tabIndex="0"
+            [attr.title]="showTitle ? locale.prev_page : null"
+            [attr.aria-disabled]="!hasPrev()"
+            (click)="prev()" (keydown.enter)="prev()"
+            class="{{prefixCls}}-prev {{hasPrev() ? '' : prefixCls+'-disabled'}}"
+        >
+            <a class="{{prefixCls}}-item-link"></a>
+        </li>
+        <li
+            [attr.title]="showTitle ? current+'/'+getPageCount() : null"
+            class="{{prefixCls}}-simple-pager"
+        >
+            <input
+                type="text" pattern="\d+"
+                [(ngModel)]="_current"
+                (keydown)="handleInputNum($event)"
+                (keydown.ArrowUp)="prev()" (keydown.ArrowDown)="next()"
+                (keydown.enter)="handleChange(_current)"
+                size="3"
+            />
+            <span class="{{prefixCls}}-slash">／</span>
+            {{getPageCount()}}
+        </li>
+        <li
+            tabIndex="0"
+            [attr.title]="showTitle ? locale.next_page : null"
+            [attr.aria-disabled]="!hasNext()"
+            (click)="next()" (keydown.enter)="next()"
+            class="{{prefixCls}}-next {{hasNext() ? '' : prefixCls+'-disabled'}}"
+        >
+            <a class="{{prefixCls}}-item-link"></a>
+        </li>
+        <li *ngIf="showQuickJumper?.goButton"
+            [attr.title]="showTitle ? (locale.jump_to + current + '/' + getPageCount()) : null"
+            class="{{prefixCls}}-simple-pager"
+        >
+            <button type="button" (click)="handleGoTO($event)" (keyup)="handleGoTO($event)">
+                {{locale.jump_to_confirm}}
+            </button>
+      </li>
+    </ul>
+</ng-container>
+
+<ng-container *ngIf="!simple">
+
+    <ul [ngClass]="getPaginationClass()" unselectable="unselectable">
+        <span class="{{prefixCls}}-total-text" *ngIf="showTotal">
+            <ng-template *ngIf="showTotalTemplate"
+                [ngTemplateOutlet]="showTotalTemplate"
+                [ngTemplateOutletContext]="{ $implicit: {total: total, current: current, pageSize: pageSize} }">
+            </ng-template>
+            <ng-container *ngIf="!showTotalTemplate">
+                {{getTotalText()}}
+            </ng-container>
+        </span>
+        <li
+            tabIndex="0"
+            [attr.title]="showTitle ? locale.prev_page : null"
+            [attr.aria-disabled]="!hasPrev()"
+            (click)="prev()" (keydown.enter)="prev()"
+            class="{{prefixCls}}-prev {{hasPrev() ? '' : prefixCls+'-disabled'}}"
+        >
+            <a class="{{prefixCls}}-item-link"></a>
+        </li>
+
+        <li #firstPager *ngIf="isFirstPagerVisible()"
+            tabIndex="0"
+            [attr.title]="showTitle ? '1' : null"
+            class="{{prefixCls}}-item {{prefixCls}}-1"
+            (click)="first()" (keydown.enter)="first()"
+        >
+            <a>1</a>
+        </li>
+        <li #jumpPrevPager *ngIf="isJumpPrevVisible()"
+            tabIndex="0"
+            [attr.title]="showTitle ? getJumpPrevTitle() : null"
+            class="{{prefixCls}}-jump-prev"
+            (click)="jumpPrev()" (keydown.enter)="jumpPrev()"
+        >
+            <a class="{{prefixCls}}-item-link"></a>
+        </li>
+
+        <li *ngFor="let n of _pagerRange"
+            #numPager
+            tabIndex="0"
+            [attr.title]="showTitle ? n : null"
+            class="{{prefixCls}}-item {{prefixCls}}-{{n}} {{current==n ? prefixCls+'-item-active' : ''}}"
+            (click)="handleChange(n)" (keydown.enter)="handleChange(n)"
+        >
+            <a>{{n}}</a>
+        </li>
+
+        <li #jumpNextPager *ngIf="isJumpNextVisible()"
+            tabIndex="0"
+            [attr.title]="showTitle ? getJumpNextTitle() : null"
+            class="{{prefixCls}}-jump-next"
+            (click)="jumpNext()" (keydown.enter)="jumpNext()"
+        >
+            <a class="{{prefixCls}}-item-link"></a>
+        </li>
+        <li #lastPager *ngIf="isLastPagerVisible()"
+            tabIndex="0"
+            [attr.title]="showTitle ? getPageCount() : null"
+            class="{{prefixCls}}-item {{prefixCls}}-{{getPageCount()}}"
+            (click)="last()" (keydown.enter)="last()"
+        >
+            <a>{{getPageCount()}}</a>
+        </li>
+
+        <li
+            tabIndex="0"
+            [attr.title]="showTitle ? locale.next_page : null"
+            [attr.aria-disabled]="!hasNext()"
+            (click)="next()" (keydown.enter)="next()"
+            class="{{prefixCls}}-next {{hasNext() ? '' : prefixCls+'-disabled'}}"
+        >
+            <a class="{{prefixCls}}-item-link"></a>
+        </li>
+
+
+        <div class="{{prefixCls}}-options">
+            <ant-select *ngIf="showSizeChanger"
+                [(ngModel)]="_pageSize"
+                [size]="size || 'default'"
+                [showSearch]="false"
+                [ngClass]="prefixCls + '-options-size-changer'"
+                [dropdownMatchSelectWidth]="true"
+                (change)="handlePageSizeChange($event)"
+            >
+                <ant-option *ngFor="let n of pageSizeOptions" [value]="n">{{getOptionText(n)}}</ant-option>
+            </ant-select>
+            <div *ngIf="showQuickJumper" class="{{prefixCls}}-options-quick-jumper">
+                {{locale.jump_to}}
+                <input
+                    type="text" pattern="\d+"
+                    [(ngModel)]="_current"
+                    (keydown)="handleInputNum($event)"
+                    (keydown.enter)="handleChange(_current)"
+                />
+                {{locale.page}}
+            </div>
+        </div>
+    </ul>
+
+</ng-container>

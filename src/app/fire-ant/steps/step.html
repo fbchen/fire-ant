@@ -1,0 +1,37 @@
+<div class="{{prefixCls}}-tail" [ngStyle]="_tailStyle" *ngIf="!isLast">
+    <i></i>
+</div>
+<div class="{{prefixCls}}-step">
+    <div class="{{prefixCls}}-head">
+        <div class="{{prefixCls}}-head-inner">
+            <ng-container *ngIf="progressDot">
+                <ng-container *ngIf="progressDotTemplate">
+                    <ng-template
+                        [ngTemplateOutlet]="progressDotTemplate"
+                        [ngTemplateOutletContext]="{$implicit: {index: stepIndex, status: status, title: nzTitle, description: description}}"></ng-template>
+                </ng-container>
+                <ng-container *ngIf="!progressDotTemplate">
+                    <span class="{{prefixCls}}-icon">
+                        <span class="{{prefixCls}}-icon-dot"></span>
+                    </span>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!progressDot">
+                <span class="{{prefixCls}}-icon" *ngIf="iconTemplate">
+                    <ng-template [ngTemplateOutlet]="iconTemplate"></ng-template>
+                </span>
+                <span [ngClass]="iconClasses" *ngIf="!iconTemplate && _showIcon(); else defaultBlock"></span>
+                <ng-template #defaultBlock>
+                    <span class="{{prefixCls}}-icon">{{stepNumber}}</span>
+                </ng-template>
+            </ng-container>
+        </div>
+    </div>
+    <div class="{{prefixCls}}-main">
+        <div class="{{prefixCls}}-title">{{nzTitle}}</div>
+        <div class="{{prefixCls}}-description" *ngIf="description">{{description}}</div>
+        <div class="{{prefixCls}}-description" *ngIf="descriptionTemplate">
+            <ng-template [ngTemplateOutlet]="descriptionTemplate"></ng-template>
+        </div>
+    </div>
+</div>

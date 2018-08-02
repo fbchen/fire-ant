@@ -7,23 +7,17 @@
  */
 
 
-import { Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
-import { OnInit, HostListener, Inject, Optional, ContentChildren, QueryList, forwardRef } from '@angular/core';
+import {
+    Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation,
+    OnInit, HostListener, Inject, Optional, ContentChildren, QueryList, forwardRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
+import { UpdateClassService } from '../core/service/update.class.service';
+import { toArray, toBoolean } from '../util/lang';
 import { FormControl } from '../input/form.control';
 import { Checkbox } from './checkbox';
 
-
-function toArray(value: any): any[] {
-    let ret = value;
-    if (value === undefined || value === null) {
-        ret = [];
-    } else if (!Array.isArray(value)) {
-        ret = [value];
-    }
-    return ret;
-}
 
 const INPUT_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -34,16 +28,38 @@ const INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
     selector: 'ant-checkbox-group',
     template: `<ng-content></ng-content>`,
+    preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
-    providers: [INPUT_CONTROL_VALUE_ACCESSOR]
+    providers: [ UpdateClassService, INPUT_CONTROL_VALUE_ACCESSOR ]
 })
 export class CheckboxGroup extends FormControl implements OnInit {
 
     /** 样式前缀 */
-    @Input() prefixCls = 'ant-checkbox-group';
+    @Input()
+    get prefixCls(): string {
+        return this._prefixCls;
+    }
+    set prefixCls(prefixCls: string) {
+        if (this._prefixCls !== prefixCls) {
+            this._prefixCls = prefixCls;
+        }
+    }
+    private _prefixCls = 'ant-checkbox-group';
 
-    /** 用户CSS样式 */
-    @Input() class: string;
+
+    /** 是否禁用状态，默认为 false */
+    @Input()
+    get disabled(): boolean {
+        return this._disabled;
+    }
+    set disabled(disabled: boolean) {
+        const value = toBoolean(disabled);
+        if (this._disabled !== value) {
+            this._disabled = value;
+        }
+    }
+    private _disabled = false;
+
 
     /** 值变更事件 */
     @Output() change = new EventEmitter<any>();
@@ -54,8 +70,8 @@ export class CheckboxGroup extends FormControl implements OnInit {
     constructor(
         public renderer: Renderer2,
         public elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) public compositionMode: boolean) {
-
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) public compositionMode: boolean,
+        protected updateClassService: UpdateClassService) {
         super(renderer, elementRef, compositionMode);
         this.value = [];
     }
@@ -99,8 +115,18 @@ export class CheckboxGroup extends FormControl implements OnInit {
 
     /** 更新子列表的checked状态 */
     toggleChildren(): void {
-        this.children.forEach(checkbox => {
-            checkbox.checked = this.hasValue(checkbox.value);
-        });
+        if (this.children && this.children.length) {
+            this.children.forEach(checkbox => {
+                checkbox.checked = this.hasValue(checkbox.value);
+            });
+        }
     }
+
+    /**
+     * @Override (From ControlValueAccessor interface)
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
+
 }

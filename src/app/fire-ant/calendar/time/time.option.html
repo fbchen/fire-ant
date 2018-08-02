@@ -1,0 +1,9 @@
+<ul #list>
+    <li *ngFor="let item of options; let i = index;"
+        [ngClass]="getOptionClass(item, i)"
+        [attr.hidden]="isHideOption(item) ? true : null"
+        (click)="onClickOption(item, $event)"
+    >
+        {{item.value}}
+    </li>
+</ul>

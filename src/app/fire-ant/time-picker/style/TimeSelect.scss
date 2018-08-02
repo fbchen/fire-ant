@@ -1,0 +1,18 @@
+@import "../../style/themes/default";
+
+$time-select-prefix-cls: #{$ant-prefix}-time-select;
+
+.#{$time-select-prefix-cls} {
+    width: 140px;
+    user-select: none;
+    outline: none;
+    display: inline-block;
+
+    .#{$ant-prefix}-select {
+        width: 100%;
+
+        &>.#{$ant-prefix}-select-dropdown .#{$ant-prefix}-select-dropdown-menu-item {
+            line-height: 1.5;
+        }
+    }
+}

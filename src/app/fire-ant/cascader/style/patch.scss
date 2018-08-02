@@ -1,0 +1,10 @@
+@import "../../style/themes/default";
+
+$cascader-prefix-cls: #{$ant-prefix}-cascader;
+
+.#{$cascader-prefix-cls} {
+  &-menus {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+}

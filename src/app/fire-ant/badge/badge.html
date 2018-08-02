@@ -1,0 +1,11 @@
+<ng-container *ngIf="status">
+    <span [ngClass]="statusClass"></span>
+    <span [class]="statusTextClass" *ngIf="text">{{text}}</span>
+</ng-container>
+<ng-container *ngIf="!status">
+    <ng-content></ng-content>
+    <scroll-number *ngIf="isCountTextVisible"
+        [count]="count" [text]="countText"
+        [attr.title]="count"
+        [ngClass]="scrollNumberCls" [ngStyle]="badgeStyle"></scroll-number>
+</ng-container>

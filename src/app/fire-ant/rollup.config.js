@@ -16,8 +16,6 @@ const globals = {
     '@angular/animations': 'ng.animations',
     'rxjs/Observable': 'Rx',
     'rxjs/Subject': 'Rx',
-    'rxjs/add/operator/debounceTime': 'Rx.Observable.prototype',
-    'rxjs/add/operator/distinctUntilChanged': 'Rx.Observable.prototype',
     'classNames': 'classnames'
 };
 

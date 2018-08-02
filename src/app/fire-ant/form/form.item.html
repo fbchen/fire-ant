@@ -2,23 +2,23 @@
     *ngIf="customLabel || getLabelText()"
     [span]="getLabelSpan()" [offset]="getLabelOffset()"
     [xs]="getLabelSize('xs')" [sm]="getLabelSize('sm')" [md]="getLabelSize('md')" [lg]="getLabelSize('lg')" [xl]="getLabelSize('xl')"
-    [ngClass]="getLabelWrapperClasses()"
+    [ngClass]="labelWrapperClasses"
 >
     <label *ngIf="getLabelText()"
         [attr.for]="control?.valueAccessor.id" [attr.title]="getLabelText()"
-        [ngClass]="getLabelClasses()"
+        [ngClass]="labelClasses"
     >{{getLabelText()}}</label>
     <label *ngIf="customLabel"
-        [attr.for]="control?.valueAccessor.id" [ngClass]="getLabelClasses()">
+        [attr.for]="control?.valueAccessor.id" [ngClass]="labelClasses">
         <ng-content select="form-label"></ng-content>
     </label>
 </ant-col>
 <ant-col
     [span]="getWrapperSpan()" [offset]="getWrapperOffset()"
     [xs]="getWrapperSize('xs')" [sm]="getWrapperSize('sm')" [md]="getWrapperSize('md')" [lg]="getWrapperSize('lg')" [xl]="getWrapperSize('xl')"
-    [ngClass]="getControlWrapperClasses()"
+    [ngClass]="controlWrapperClasses"
 >
-    <div [ngClass]="getControlClasses()">
+    <div [ngClass]="controlClasses">
         <ng-content></ng-content>
         <div class="{{prefixCls}}-explain" *ngIf="help || anyHelp">
             {{help}}

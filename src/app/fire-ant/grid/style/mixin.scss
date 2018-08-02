@@ -1,0 +1,106 @@
+@import "../../style/mixins/index";
+// mixins for grid system
+// ------------------------
+@mixin make-row($gutter: $grid-gutter-width) {
+  position: relative;
+  margin-left: ($gutter / -2);
+  margin-right: ($gutter / -2);
+  height: auto;
+  @include clearfix;
+}
+
+@mixin make-grid-col($index, $list: "") {
+    $item: ".#{$ant-prefix}-col-#{$index}, .#{$ant-prefix}-col-xs-#{$index}, .#{$ant-prefix}-col-sm-#{$index}, .#{$ant-prefix}-col-md-#{$index}, .#{$ant-prefix}-col-lg-#{$index}";
+    @if str-length($list)>0 {
+      $item: "#{$list}, #{$item}";
+    }
+    @if $index>$grid-columns {
+      #{$list} {
+        position: relative; // Prevent columns from collapsing when empty
+        min-height: 1px;
+        padding-left: ($grid-gutter-width / 2);
+        padding-right: ($grid-gutter-width / 2);
+      }
+    }
+    @else {
+      @include make-grid-col(($index + 1), "#{$item}");
+    }
+}
+
+@mixin make-grid-columns() {
+  @include make-grid-col(1);
+}
+
+@mixin make-float-grid-col($class, $index, $list: "") {
+    // initial
+    $item: ".#{$ant-prefix}-col#{$class}-#{$index}";
+    @if str-length($list)>0 {
+      $item: "#{$list}, #{$item}";
+    }
+    @if $index>$grid-columns {
+      // terminal
+      #{$list} {
+        float: left;
+        flex: 0 0 auto;
+      }
+    }
+    @else {
+      // general
+      @include make-float-grid-col($class, ($index + 1), "#{$item}");
+    }
+}
+
+@mixin float-grid-columns($class) {
+  @include make-float-grid-col($class, 1); // kickstart it
+}
+
+// lesshint false
+@mixin loop-grid-columns($index, $class) {
+  @if $index>0 {
+    .#{$ant-prefix}-col#{$class}-#{$index} {
+      display: block;
+      width: percentage(($index / $grid-columns));
+    }
+    .#{$ant-prefix}-col#{$class}-push-#{$index} {
+      left: percentage(($index / $grid-columns));
+    }
+    .#{$ant-prefix}-col#{$class}-pull-#{$index} {
+      right: percentage(($index / $grid-columns));
+    }
+    .#{$ant-prefix}-col#{$class}-offset-#{$index} {
+      margin-left: percentage(($index / $grid-columns));
+    }
+    .#{$ant-prefix}-col#{$class}-order-#{$index} {
+      order: $index;
+    }
+    @include loop-grid-columns(($index - 1), $class);
+  }
+  @else {
+    .#{$ant-prefix}-col#{$class}-#{$index} {
+      display: none;
+    }
+    .#{$ant-prefix}-col-push-#{$index} {
+      left: auto;
+    }
+    .#{$ant-prefix}-col-pull-#{$index} {
+      right: auto;
+    }
+    .#{$ant-prefix}-col#{$class}-push-#{$index} {
+      left: auto;
+    }
+    .#{$ant-prefix}-col#{$class}-pull-#{$index} {
+      right: auto;
+    }
+    .#{$ant-prefix}-col#{$class}-offset-#{$index} {
+      margin-left: 0;
+    }
+    .#{$ant-prefix}-col#{$class}-order-#{$index} {
+      order: 0;
+    }
+  }
+}
+
+@mixin make-grid($class: "") {
+  @include float-grid-columns($class);
+  @include loop-grid-columns($grid-columns, $class);
+}

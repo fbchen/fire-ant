@@ -1,0 +1,22 @@
+@import "../../style/themes/default";
+
+$table-prefix-cls: #{$ant-prefix}-table;
+
+.#{$table-prefix-cls} {
+
+    &-tbody > tr.highlight > td {
+        animation: cellHighlight 1.2s $ease-in-out-circ;
+    }
+}
+
+@keyframes cellHighlight {
+    0% {
+        background-color: rgba(255, 241, 170, 0);
+    }
+    40% {
+        background-color: rgba(255, 241, 170, 1);
+    }
+    100% {
+        background-color: rgba(255, 241, 170, 0);
+    }
+}

@@ -1,0 +1,14 @@
+<input #input
+    type="text"
+    [ngClass]="pickerInputClass"
+    [disabled]="disabled"
+    [readonly]="readOnly"
+    [required]="required"
+    [attr.placeholder]="placeholder"
+    [(ngModel)]="displayValue" />
+<ant-icon *ngIf="isClearIconVisible()"
+    type="cross-circle"
+    class="{{prefixCls}}-picker-clear"
+    [attr.title]="clearText"
+    (click)="clearSelection($event)"></ant-icon>
+<span class="{{prefixCls}}-picker-icon"></span>

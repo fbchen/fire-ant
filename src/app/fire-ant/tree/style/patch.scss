@@ -1,0 +1,12 @@
+@import "../../style/themes/default";
+
+
+$tree-prefix-cls: #{$ant-prefix}-tree;
+$treenode-prefix-cls: #{$ant-prefix}-tree-treenode;
+
+.#{$tree-prefix-cls} {
+    display: block;
+}
+.#{$treenode-prefix-cls} {
+    display: block;
+}

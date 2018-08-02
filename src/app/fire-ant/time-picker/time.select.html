@@ -1,0 +1,9 @@
+<ant-select
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    [placeholder]="placeholder"
+    [size]="size" [disabled]="disabled" [required]="required"
+    iconArrow="clock-circle-o"
+>
+    <ant-option *ngFor="let item of items" [value]="item">{{item}}</ant-option>
+</ant-select>

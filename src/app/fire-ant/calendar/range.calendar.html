@@ -1,0 +1,98 @@
+<div class="{{prefixCls}}-panel">
+
+    <a *ngIf="isClearIconVisible()"
+        class="{{prefixCls}}-clear-btn"
+        role="button"
+        [attr.title]="locale?.clear"
+        (click)="onClear($event)"
+    ></a>
+
+    <div class="{{prefixCls}}-date-panel" (mouseleave)="onDatePanelLeave()">
+        <ant-range-panel
+            direction="left"
+            [prefixCls]="prefixCls"
+            [locale]="locale"
+            [format]="getFormat()"
+            [enablePrev]="true"
+            [enableNext]="isStartPanelNextEnable()"
+            [placeholder]="startPlaceholder || placeholder"
+            [value]="getStartValue()"
+            [selectedValue]="selectedValue"
+            [hoverValue]="hoverValue"
+            [showTimePicker]="showTimePicker"
+            [isTimePickerVisible]="isTimePickerVisible"
+            [disabledMonth]="disabledStartMonth"
+            [disabledDate]="disabledStartDate"
+            [disabledTime]="disabledStartTime"
+            (dayHover)="onDayHover($event)"
+            (panelChange)="onStartPanelChange($event)"
+            (valueUpdate)="onStartValueChange($event)"
+            (change)="onValueSelected($event, 'left')"
+            (timechange)="onTimeValueChange($event, 'left')"
+        >
+        </ant-range-panel>
+
+        <span class="{{prefixCls}}-range-middle">~</span>
+
+        <ant-range-panel
+            direction="right"
+            [prefixCls]="prefixCls"
+            [locale]="locale"
+            [format]="getFormat()"
+            [enableNext]="true"
+            [enablePrev]="isEndPanelNextEnable()"
+            [placeholder]="endPlaceholder || placeholder"
+            [value]="getEndValue()"
+            [selectedValue]="selectedValue"
+            [hoverValue]="hoverValue"
+            [showTimePicker]="showTimePicker"
+            [isTimePickerVisible]="isTimePickerVisible"
+            [disabledMonth]="disabledEndMonth"
+            [disabledDate]="disabledEndDate"
+            [disabledTime]="disabledEndTime"
+            (dayHover)="onDayHover($event)"
+            (panelChange)="onEndPanelChange($event)"
+            (valueUpdate)="onEndValueChange($event)"
+            (change)="onValueSelected($event, 'right')"
+            (timechange)="onTimeValueChange($event, 'right')"
+        >
+        </ant-range-panel>
+    </div>
+
+    <div *ngIf="showToday || showTimePicker || buttons?.length" [ngClass]="footerClass">
+        <div *ngIf="buttons?.length"
+            class="{{prefixCls}}-footer-extra {{prefixCls}}-range-quick-selector">
+            <a *ngFor="let btn of buttons"
+                (mouseenter)="onRangeButtonHover(btn)"
+                (mouseleave)="onRangeButtonLeave(btn)"
+                (click)="onRangeButtonClick(btn)"
+            >
+                {{btn.text}}
+            </a>
+        </div>
+        <div class="{{prefixCls}}-footer-btn" *ngIf="showToday || showTimePicker">
+            <a *ngIf="showToday"
+                role="button"
+                [ngClass]="todayButtonClass"
+                [attr.title]="getTodayButtonText()"
+                (click)="onToday($event)"
+            >
+                {{getTodayButtonText()}}
+            </a>
+            <a *ngIf="showTimePicker"
+                role="button"
+                [ngClass]="timePickerButtonClass"
+                (click)="onTimePickerBtnClick($event)"
+            >
+                {{isTimePickerVisible ? locale.dateSelect : locale.timeSelect}}
+            </a>
+            <a *ngIf="showOkButton()"
+                role="button"
+                [ngClass]="okButtonClass"
+                (click)="onOk($event)"
+            >
+                {{locale.ok}}
+            </a>
+        </div>
+    </div>
+</div>

@@ -46,7 +46,8 @@ export interface FieldMessages {
             display: block;
             padding-top: 8px;
         }
-    `]
+    `],
+    preserveWhitespaces: false
 })
 export class FormValidation {
 

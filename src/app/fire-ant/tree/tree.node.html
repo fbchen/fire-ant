@@ -1,0 +1,39 @@
+<span [ngClass]="getSwitcherClass()" (click)="toggle()"></span>
+<ng-container *ngIf="checkable">
+    <span [ngClass]="getCheckboxClass()" (click)="onCheck($event)">
+        <ng-container *ngIf="getCheckboxTemplate();else defaultCheckbox">
+            <ng-template [ngTemplateOutlet]="getCheckboxTemplate()"></ng-template>
+        </ng-container>
+        <ng-template #defaultCheckbox>
+            <span [ngClass]="getCheckboxInnerClass()"></span>
+        </ng-template>
+    </span>
+</ng-container>
+<span
+    [class]="nodeCls" [ngClass]="getContentWrapClass()"
+    [attr.title]="getTitle()"
+    [attr.draggable]="draggable ? true: null"
+    [attr.aria-grabbed]="draggable ? true: null"
+    (dragstart)="onDragStart($event)"
+    (click)="onClick($event)"
+    (mouseenter)="onMouseEnter($event)"
+    (mouseleave)="onMouseLeave($event)"
+    (contextmenu)="onContextMenu($event)"
+>
+    <span *ngIf="isShowIcon()" [ngClass]="getIconClass()"></span>
+    <span [ngClass]="getContentClass()">
+        <ng-container *ngIf="titleIsTemplate;else rawTitle">
+            <ng-template [ngTemplateOutlet]="title"
+                [ngTemplateOutletContext]="{ $implicit: {data: data, titleData: titleData} }"></ng-template>
+        </ng-container>
+        <ng-template #rawTitle>{{title}}</ng-template>
+    </span>
+</span>
+<div *ngIf="!isLeaf && children?.length" [ngClass]="getChildTreeClass()">
+    <ng-container *ngIf="expanded">
+        <ant-tree-node *ngFor="let child of children"
+            [prefixCls]="prefixCls"
+            [data]="child"
+        ></ant-tree-node>
+    </ng-container>
+</div>

@@ -1,0 +1,16 @@
+<ul #ulElem [ngClass]="wrapperClasses" (mouseleave)="onMouseLeave()">
+    <li *ngFor="let star of getStars(); let i = index;"
+        [ngClass]="getStarClass(i)"
+        (click)="onClick($event, i)"
+        (mousemove)="onHover($event, i)"
+    >
+        <div class="{{prefixCls}}-star-first">
+            <ng-template *ngIf="character" [ngTemplateOutlet]="character"></ng-template>
+            <ng-container *ngIf="!character"><ant-icon type="star"></ant-icon></ng-container>
+        </div>
+        <div class="{{prefixCls}}-star-second">
+            <ng-template *ngIf="character" [ngTemplateOutlet]="character"></ng-template>
+            <ng-container *ngIf="!character"><ant-icon type="star"></ant-icon></ng-container>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,49 @@
+<div #mask
+    [ngStyle]="getMaskStyle()"
+    [ngClass]="getMaskClass()"></div>
+
+<div #wrap
+    role="dialog"
+    tabIndex="-1"
+    [ngStyle]="getWrapStyle()"
+    [ngClass]="getWrapClass()"
+    (keydown)="onKeyDown($event)"
+    (click)="onMaskClick($event)"
+>
+    <div #dialog
+        role="document"
+        [ngStyle]="getDialogStyle()"
+        [ngClass]="getDialogClass()"
+    >
+        <div class="{{prefixCls}}-content">
+            <button *ngIf="closable"
+                aria-label="Close"
+                class="{{prefixCls}}-close"
+                (click)="close($event)"
+            >
+                <span class="{{prefixCls}}-close-x"></span>
+            </button>
+
+            <div #body class="{{prefixCls}}-body" [ngStyle]="bodyStyle">
+                <div class="{{subPrefixCls}}-body-wrapper">
+                    <div class="{{subPrefixCls}}-body">
+                        <ant-icon [type]="icon"></ant-icon>
+                        <span class="{{subPrefixCls}}-title">{{title}}</span>
+                        <div class="{{subPrefixCls}}-content"><pre>{{content}}</pre></div>
+                    </div>
+                </div>
+            </div>
+            <div #footer class="{{prefixCls}}-footer" style="text-align: center">
+                <ant-button #noBtn="button" size="large" (click)="onCancelClick($event, noBtn)" *ngIf="!hideCancelBtn">
+                    {{cancelText}}
+                </ant-button>
+                <ant-button #okBtn="button" type="primary" size="large" (click)="onOKClick($event, okBtn)">
+                    {{okText}}
+                </ant-button>
+            </div>
+        </div>
+        <div #sentinel tabIndex="0" style="width: 0; height: 0; overflow: hidden;">
+            sentinel
+        </div>
+      </div>
+</div>

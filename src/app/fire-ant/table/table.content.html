@@ -1,0 +1,13 @@
+<div class="{{prefixCls}}-scroll">
+    <div class="{{prefixCls}}-body" [ngStyle]="table.bodyStyles">
+
+        <table [ngClass]="table.contentTableClasses">
+            <ng-content select="thead"></ng-content>
+            <ng-content select="tbody"></ng-content>
+        </table>
+
+    </div>
+</div>
+<div class="{{prefixCls}}-placeholder" #emptyText *ngIf="table.isEmpty">
+    {{table.emptyText}}
+</div>

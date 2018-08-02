@@ -1,0 +1,10 @@
+<ant-month-panel
+    style="position: relative"
+    prefixCls="{{prefixCls}}-month-panel"
+    [rootPrefixCls]="prefixCls"
+    [locale]="locale"
+    [value]="innerValue"
+    [disabledMonth]="disabledDate"
+    (valueUpdate)="onSelectYear($event)"
+    (change)="onSelectMonth($event)">
+</ant-month-panel>

@@ -27,9 +27,6 @@ export /*abstract*/ class FormControl extends DefaultValueAccessor {
     /** 控件 label */
     @Input() label: string;
 
-    /** 是否禁用状态，默认为 false */
-    @Input() disabled = false;
-
     /**
      * 定义与输入控件相关联的值，主要用途如下：<ul>
      * <li> type="button", "reset", "submit" - 定义按钮上的显示的文本 </li>
@@ -53,10 +50,10 @@ export /*abstract*/ class FormControl extends DefaultValueAccessor {
     }
 
     constructor(
-        @Inject(Renderer2) public __renderer: Renderer2,
-        @Inject(ElementRef) public __elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) public __compositionMode: boolean) {
-        super(__renderer, __elementRef, __compositionMode);
+        @Inject(Renderer2) protected renderer: Renderer2,
+        @Inject(ElementRef) protected elementRef: ElementRef,
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) protected compositionMode: boolean) {
+        super(renderer, elementRef, compositionMode);
         this.id = FormControl.registerControl();
     }
 
@@ -74,6 +71,6 @@ export /*abstract*/ class FormControl extends DefaultValueAccessor {
      * @Override (From ControlValueAccessor interface)
      */
     setDisabledState(isDisabled: boolean): void {
-        this.disabled = isDisabled;
+        // this.disabled = isDisabled;
     }
 }

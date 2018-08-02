@@ -1,0 +1,59 @@
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to lighten
+/// @param {Number} $amount - amount of `$color` in returned color (取值1-5)
+/// @return {Color}
+@function fb-lighten($color, $amount) {
+    $amount: $amount * 100% / 12;
+    // Makes a color lighter. Takes a color and a number between `0%` and `100%`, and returns a color with the lightness increased by that amount.
+    // eg. lighten(#800, 20%) => #e00
+    @return lighten($color, $amount);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to darken
+/// @param {Number} $amount - amount of `$color` in returned color (取值1-5)
+/// @return {Color}
+@function fb-darken($color, $amount) {
+    $amount: $amount * 100% / 12;
+    // Makes a color darker. Takes a color and a number between 0% and 100%, and returns a color with the lightness decreased by that amount.
+    // eg. darken(#800, 20%) => #200
+    @return darken($color, $amount);
+}
+
+/**
+ * 由于Ant-Design的colorPalette方法过于复杂（在Less中使用Javascript），无法改造，先用这个方法临时替换
+ * @param color  颜色
+ * @param amount 变化量，取值1-10，其中：1-5减淡，7-10-加深，6-不变
+ */
+@function fb-colorPalette($color, $amount) {
+    // 不变
+    @if $amount == 6 {
+        @return $color;
+    }
+
+    // 加深
+    @if $amount > 6 {
+        // @return fb-darken($color, $amount - 6);
+        $c: darken($color, ($amount - 6) * 6.5%);
+        $c: mix(#000, $c, ($amount - 6) * 12%); // 混入黑色
+        @return $c;
+    }
+
+    // 变浅
+    // @return fb-lighten($color, 6 - $amount);
+    /*
+    // 不使用透明度，否则不好转换为16进制颜色
+    $c: fade_out($color, (6 - $amount) * 0.18); // 增加透明度
+    $c: saturate($c, 10%); // 增加饱和度
+    $c: lighten($c, 10%); // 增加亮度
+    */
+    $c: mix(#fff, $color, (6 - $amount) * 18.5%);
+    @return $c;
+}
+
+
+@function fb-fade-out($color, $percentage) {
+    @return fade_out($color, (100% - $percentage) / 100%);
+}

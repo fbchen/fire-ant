@@ -1,0 +1,20 @@
+@import "../../style/themes/default";
+
+$badge-prefix-cls: #{$ant-prefix}-badge;
+
+@mixin badge-colors($badgePrefix, $colors) {
+    @each $color-name, $color-base, $color-contrast in get-colors($colors) {
+        &-color-#{$color-name} {
+            .#{$badgePrefix}-count {
+                background-color: $color-base;
+            }
+            .#{$badgePrefix}-status-dot {
+                background-color: $color-base;
+            }
+        }
+    }
+}
+
+.#{$badge-prefix-cls} {
+    @include badge-colors($badge-prefix-cls, $colors);
+}

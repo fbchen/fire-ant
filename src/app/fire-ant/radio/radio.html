@@ -1,5 +1,5 @@
-<label [ngClass]="getWrapperClass()">
-    <span [ngClass]="getBoxClass()">
+<label [ngClass]="wrapperClass">
+    <span [ngClass]="radioClass">
         <input
             [attr.name]="name"
             [attr.type]="type"
@@ -7,10 +7,10 @@
             [readonly]="readOnly"
             [disabled]="disabled"
             [checked]="checked"
-            class="{{getPrefixCls()}}-input"
+            [class]="inputClass"
             (change)="handleChange($event)"
         />
-        <span class="{{getPrefixCls()}}-inner"></span>
+        <span [class]="innerClass"></span>
     </span>
     <span><ng-content></ng-content></span>
 </label>

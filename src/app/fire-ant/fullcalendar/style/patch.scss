@@ -1,0 +1,17 @@
+@import "../../style/themes/default";
+
+$full-calendar-prefix-cls: #{$ant-prefix}-fullcalendar;
+
+.#{$full-calendar-prefix-cls} {
+
+    & .#{$full-calendar-prefix-cls}-year-select,
+    & .#{$full-calendar-prefix-cls}-month-select {
+        width: auto;
+    }
+
+    & &-header {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+

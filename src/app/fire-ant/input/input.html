@@ -1,0 +1,32 @@
+<textarea #input *ngIf="type === 'textarea'"
+    [ngClass]="inputClass" [ngStyle]="textareaStyles"
+    [attr.id]="id" [attr.name]="name" [attr.placeholder]="placeholder" [rows]="rows"
+    [required]="required" [readonly]="readOnly"
+    [attr.minlength]="minlength" [attr.maxlength]="maxlength"
+    [(ngModel)]="innerValue"
+    (keydown)="handleKeyDown($event)" (keyup)="handleKeyUp($event)"
+    (change)="handleTextareaChange($event)"></textarea>
+<span *ngIf="type !== 'textarea'" [class]="affixWrapperClass">
+    <span [class]="affixPrefixClass" *ngIf="prefix || prefixTpl">
+        <ng-template *ngIf="prefixTpl; else defaultPrefix"
+            [ngTemplateOutlet]="prefixTpl"></ng-template>
+        <ng-template #defaultPrefix>
+            <ant-icon *ngIf="prefix" [type]="prefix"></ant-icon>
+        </ng-template>
+    </span>
+    <input #input [ngClass]="inputClass" [type]="type"
+        [attr.id]="id" [attr.name]="name" [attr.placeholder]="placeholder"
+        [attr.maxlength]="maxlength" [attr.minlength]="minlength" [pattern]="pattern"
+        [attr.max]="max" [attr.min]="min" [attr.autoComplete]="autoComplete"
+        [disabled]="disabled" [readOnly]="readOnly" [required]="required"
+        [(ngModel)]="innerValue"
+        (blur)="onBlur($event)" (focus)="onFocus($event)"
+        (keydown)="handleKeyDown($event)" />
+    <span [class]="affixSuffixClass" *ngIf="suffix || suffixTpl">
+        <ng-template *ngIf="suffixTpl; else defaultSubfix"
+            [ngTemplateOutlet]="suffixTpl"></ng-template>
+        <ng-template #defaultSubfix>
+            <ant-icon *ngIf="suffix" [type]="suffix"></ant-icon>
+        </ng-template>
+    </span>
+</span>

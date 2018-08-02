@@ -1,0 +1,61 @@
+<div class="{{prefixCls}}-handler-wrap">
+    <span #up
+        unselectable="unselectable"
+        role="button"
+        aria-label="Increase Value"
+        class="{{prefixCls}}-handler {{prefixCls}}-handler-up {{isUpHandlerDisabled() ? prefixCls+'-handler-up-disabled' : ''}}"
+        [attr.aria-disabled]="isUpHandlerDisabled() ? true : null"
+        (mousedown)="onUpHandlerPress($event)"
+        (mouseup)="stop($event)"
+        (mouseleave)="stop($event)"
+    >
+        <span
+            unselectable="unselectable"
+            class="{{prefixCls}}-handler-up-inner"
+            (click)="preventDefaultEvent($event)"
+        ></span>
+    </span>
+    <span #down
+        unselectable="unselectable"
+        role="button"
+        aria-label="Decrease Value"
+        class="{{prefixCls}}-handler {{prefixCls}}-handler-down {{isDownHandlerDisabled() ? prefixCls+'-handler-down-disabled' : ''}}"
+        [attr.aria-disabled]="isDownHandlerDisabled() ? true : null"
+        (mousedown)="onDownHandlerPress($event)"
+        (mouseup)="stop($event)"
+        (mouseleave)="stop($event)"
+    >
+        <span
+            unselectable="unselectable"
+            class="{{prefixCls}}-handler-down-inner"
+            (click)="preventDefaultEvent($event)"
+        ></span>
+    </span>
+</div>
+<div
+    class="{{prefixCls}}-input-wrap"
+    role="spinbutton"
+    [attr.aria-valuemin]="min"
+    [attr.aria-valuemax]="max"
+    [attr.aria-valuenow]="formattedValue"
+>
+    <input #input
+        type="text"
+        autoComplete="off"
+        class="{{prefixCls}}-input"
+        [attr.autoFocus]="autoFocus ? 'autofocus' : null"
+        [attr.placeholder]="placeholder"
+        [attr.max]="max"
+        [attr.min]="min"
+        [attr.name]="name"
+        [attr.id]="id"
+        [disabled]="disabled"
+        [readonly]="readOnly"
+        [required]="required"
+        (focus)="onFocus($event)" (blur)="onBlur($event)"
+        (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)"
+        (change)="onInputChange($event)"
+        (ngModelChange)="onInputValueChange($event)"
+        [ngModel]="formattedValue"
+    />
+</div>

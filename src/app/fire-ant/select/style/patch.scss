@@ -1,0 +1,17 @@
+@import "../../style/themes/default";
+
+$select-prefix-cls: #{$ant-prefix}-select;
+$input-group-cls: #{$ant-prefix}-input-group;
+
+.#{$select-prefix-cls} {
+    width: 100%;
+}
+
+.#{$input-group-cls} > .#{$select-prefix-cls} {
+    width: auto;
+}
+
+.#{$select-prefix-cls}-dropdown-menu-item {
+    line-height: 1.5;
+}
+

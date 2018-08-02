@@ -1,0 +1,61 @@
+<div #mask
+    [ngStyle]="getMaskStyle()"
+    [ngClass]="getMaskClass()"></div>
+
+<div #wrap
+    role="dialog"
+    tabIndex="-1"
+    [attr.aria-labelledby]="titleId"
+    [ngStyle]="getWrapStyle()"
+    [ngClass]="getWrapClass()"
+    (keydown)="onKeyDown($event)"
+    (click)="onMaskClick($event)"
+>
+    <div #dialog
+        role="document"
+        [ngStyle]="getDialogStyle()"
+        [ngClass]="getDialogClass()"
+    >
+        <div class="{{prefixCls}}-content">
+            <button *ngIf="closable"
+                aria-label="Close"
+                class="{{prefixCls}}-close"
+                (click)="close($event)"
+            >
+                <span class="{{prefixCls}}-close-x"></span>
+            </button>
+            <div #header class="{{prefixCls}}-header" *ngIf="title || titleTemplate">
+                <ng-container *ngIf="title">
+                    <div class="{{prefixCls}}-title" [attr.id]="titleId" *ngIf="!titleAsHtml">{{title}}</div>
+                    <div class="{{prefixCls}}-title" [attr.id]="titleId" *ngIf="titleAsHtml" [innerHTML]="title"></div>
+                </ng-container>
+                <ng-template *ngIf="titleTemplate" [ngTemplateOutlet]="titleTemplate"></ng-template>
+            </div>
+            <div #body class="{{prefixCls}}-body" [ngStyle]="bodyStyle">
+                <ng-template #viewContainer></ng-template>
+                <ng-template *ngIf="templateRef" [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{ $implicit: templateData }"></ng-template>
+            </div>
+            <div #footer class="{{prefixCls}}-footer" *ngIf="!hideFooter" [style.textAlign]="buttonAtCenter ? 'center' : null">
+                <span style="float: left">
+                    <ant-button *ngFor="let btn of buttons"
+                        [type]="btn.type" [icon]="btn.icon" [shape]="btn.shape"
+                        [size]="btn.size" [ghost]="btn.ghost" [loading]="btn.loading"
+                        (click)="onBtnClick($event, btn)"
+                     >
+                        {{btn.text}}
+                    </ant-button>
+                </span>
+
+                <ant-button #noBtn="button" size="large" (click)="onCancelClick($event, noBtn)" *ngIf="!hideCancelBtn">
+                    {{cancelText}}
+                </ant-button>
+                <ant-button #okBtn="button" type="primary" size="large" (click)="onOKClick($event, okBtn)" style="margin-left: 8px">
+                    {{okText}}
+                </ant-button>
+            </div>
+        </div>
+        <div #sentinel tabIndex="0" style="width: 0; height: 0; overflow: hidden;">
+            sentinel
+        </div>
+      </div>
+</div>

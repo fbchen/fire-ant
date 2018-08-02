@@ -1,0 +1,46 @@
+@import "../../style/themes/default";
+
+$pagination-prefix-cls: #{$ant-prefix}-pagination;
+
+#{$ant-prefix}-pagination {
+    display: inline-block;
+}
+
+.#{$pagination-prefix-cls} {
+    &-options > &-options-size-changer {
+        width: auto;
+    }
+
+    &-simple &-simple-pager button {
+        cursor: pointer;
+        user-select: none;
+        min-width: 28px;
+        height: 24px;
+        vertical-align: middle;
+        background-color: $component-background;
+        border-radius: $border-radius-base;
+        border: $border-width-base $border-style-base $border-color-base;
+        font-family: Arial;
+        outline: 0;
+        padding: 0px 4px;
+
+        &:focus,
+        &:hover {
+            transition: all .3s;
+            border-color: $primary-color;
+            color: $primary-color;
+        }
+    }
+
+    &-item,
+    &-total-text,
+    &-prev,
+    &-next,
+    &-jump-prev,
+    &-jump-next,
+    &-options,
+    &-simple-pager {
+        float: left;
+    }
+}
+

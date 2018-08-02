@@ -7,10 +7,14 @@
  */
 
 
-import { Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
-import { OnInit, Inject, Optional, Host, forwardRef } from '@angular/core';
+import {
+    Component, Input, Output, EventEmitter, ElementRef, Renderer2, ViewEncapsulation,
+    OnInit, Inject, Optional, Host, forwardRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
+import { UpdateClassService } from '../core/service/update.class.service';
+import { toBoolean } from '../util/lang';
 import { FormControl } from '../input/form.control';
 import { RadioGroup } from './radio.group';
 
@@ -24,29 +28,95 @@ const INPUT_CONTROL_VALUE_ACCESSOR: any = {
     selector: 'ant-radio',
     templateUrl: './radio.html',
     styleUrls: ['./style/index.scss', './style/patch.scss'],
+    preserveWhitespaces: false,
     encapsulation: ViewEncapsulation.None,
-    providers: [INPUT_CONTROL_VALUE_ACCESSOR],
+    providers: [ UpdateClassService, INPUT_CONTROL_VALUE_ACCESSOR ],
     exportAs: 'radio'
 })
 export class Radio extends FormControl implements OnInit {
 
     /** 样式前缀 */
-    @Input() prefixCls = 'ant-radio';
+    @Input()
+    get prefixCls(): string {
+        return this._prefixCls;
+    }
+    set prefixCls(prefixCls: string) {
+        if (this._prefixCls !== prefixCls) {
+            this._prefixCls = prefixCls;
+            this.updateInputClass();
+            this.updateWrapperClass();
+            this.updateRadioClass();
+        }
+    }
+    private _prefixCls = 'ant-radio';
+
 
     /** 指定当前是否选中 */
-    @Input() checked = false;
+    @Input()
+    get checked(): boolean {
+        return this._checked;
+    }
+    set checked(checked: boolean) {
+        const value = toBoolean(checked);
+        if (this._checked !== value) {
+            this._checked = value;
+            this.updateRadioClass();
+            this.updateWrapperClass();
+        }
+    }
+    private _checked = false;
+
+
+    /** 是否禁用状态，默认为 false */
+    @Input()
+    get disabled(): boolean {
+        return this._disabled || this.isGroupDisabled() || false;
+    }
+    set disabled(disabled: boolean) {
+        const value = toBoolean(disabled);
+        if (this._disabled !== value) {
+            this._disabled = value;
+            this.updateRadioClass();
+            this.updateWrapperClass();
+        }
+    }
+    private _disabled = false;
+
 
     /** 是否只读状态，默认为 false */
-    @Input() readOnly = false;
+    @Input()
+    get readOnly(): boolean {
+        return this._readOnly;
+    }
+    set readOnly(readOnly: boolean) {
+        const value = toBoolean(readOnly);
+        if (this._readOnly !== value) {
+            this._readOnly = value;
+        }
+    }
+    private _readOnly = false;
+
 
     /** 用户CSS样式 */
-    @Input() class: string;
+    @Input()
+    get className(): string {
+        return this._className;
+    }
+    set className(className: string) {
+        if (this._className !== className) {
+            this._className = className;
+            this.updateWrapperClass();
+        }
+    }
+    private _className: string;
+
 
     /** 内部输入控件的tabIndex属性，默认情况下无需关注 */
     @Input() tabIndex: string;
 
     /** 未选中状态下的值，默认为空字符串值 */
     @Input() uncheckedValue: any;
+
 
     /** 值变更事件 */
     @Output() change = new EventEmitter<any>();
@@ -57,52 +127,19 @@ export class Radio extends FormControl implements OnInit {
     /** 内部默认的控件 */
     public type = 'radio';
 
-    /** 是否禁用状态，默认为 false */
-    @Input() set disabled(disabled: boolean) {
-        this._disabled = disabled;
-    }
-    get disabled(): boolean {
-        return this._disabled || this.isGroupDisabled() || false;
-    }
-
-    private _disabled = false;
+    // 内部样式
+    public wrapperClass: any;
+    public radioClass: any;
+    public inputClass: string;
+    public innerClass: string;
 
     constructor(
         renderer: Renderer2,
         elementRef: ElementRef,
         @Optional() @Inject(COMPOSITION_BUFFER_MODE) compositionMode: boolean,
         @Inject(forwardRef(() => RadioGroup)) @Optional() @Host() private group: RadioGroup) {
-
         super(renderer, elementRef, compositionMode);
         this.value = 'on';
-    }
-
-    getWrapperClass(): any {
-        return {
-            [`${this.getPrefixCls()}-wrapper`]: 1,
-            [`${this.getPrefixCls()}-wrapper-checked`]: this.checked,
-            [`${this.getPrefixCls()}-wrapper-disabled`]: this.disabled,
-            [`${this.class}`]: this.class
-        };
-    }
-
-    getBoxClass(): any {
-        return {
-            [`${this.getPrefixCls()}`]: 1,
-            [`${this.getPrefixCls()}-checked`]: this.checked,
-            [`${this.getPrefixCls()}-disabled`]: this.disabled
-        };
-    }
-
-    getPrefixCls(): string {
-        if (this.group && this.group.mode === 'button') {
-            return `${this.prefixCls}-button`;
-        }
-        return this.prefixCls;
-    }
-
-    isGroupDisabled(): boolean {
-        return this.group && this.group.disabled;
     }
 
     ngOnInit(): void {
@@ -111,6 +148,40 @@ export class Radio extends FormControl implements OnInit {
             this.checked = this.group.value === this.value;
         }
         this._disabled = this._disabled || this.isGroupDisabled() || false;
+
+        // 初始化样式
+        this.updateInputClass();
+        this.updateWrapperClass();
+        this.updateRadioClass();
+    }
+
+    private updateWrapperClass(): any {
+        this.wrapperClass = {
+            [`${this.getPrefixCls()}-wrapper`]: 1,
+            [`${this.getPrefixCls()}-wrapper-checked`]: this.checked,
+            [`${this.getPrefixCls()}-wrapper-disabled`]: this.disabled,
+            [`${this.className}`]: this.className
+        };
+    }
+
+    private updateRadioClass(): any {
+        this.radioClass = {
+            [`${this.getPrefixCls()}`]: 1,
+            [`${this.getPrefixCls()}-checked`]: this.checked,
+            [`${this.getPrefixCls()}-disabled`]: this.disabled
+        };
+    }
+
+    private updateInputClass(): void {
+        this.inputClass = `${this.getPrefixCls()}-input`;
+        this.innerClass = `${this.getPrefixCls()}-inner`;
+    }
+
+    private getPrefixCls(): string {
+        if (this.group && this.group.mode === 'button') {
+            return `${this.prefixCls}-button`;
+        }
+        return this.prefixCls;
     }
 
     /**
@@ -118,9 +189,7 @@ export class Radio extends FormControl implements OnInit {
      * @param value ngModel对应的值
      */
     writeValue(value: any): void {
-        if (value !== null) {
-            this.checked = this.value === value;
-        }
+        this.checked = (this.value === value);
     }
 
     handleChange(event: Event): void {
@@ -129,8 +198,8 @@ export class Radio extends FormControl implements OnInit {
         if (this.disabled) {
             return;
         }
-        this.checked = !this.checked;
 
+        this.checked = !this.checked;
         const value = this.checked ? this.value : (this.uncheckedValue || '');
         this.onChange(value); // Angular need this
         this.check.emit(this.checked);
@@ -141,12 +210,22 @@ export class Radio extends FormControl implements OnInit {
     /**
      * 如果Checkbox在CheckboxGroup内部，则触发CheckboxGroup的值变化
      */
-    makeGroupChange() {
+    private makeGroupChange() {
         if (this.group) {
             this.group.toggle(this.value, this.checked);
         }
     }
 
+    private isGroupDisabled(): boolean {
+        return this.group && this.group.disabled;
+    }
+
+    /**
+     * @Override (From ControlValueAccessor interface)
+     */
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+    }
 }
 
 

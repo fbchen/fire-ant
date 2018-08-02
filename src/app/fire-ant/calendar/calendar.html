@@ -1,0 +1,65 @@
+<div class="{{prefixCls}}-panel">
+
+    <ant-date-input
+        [prefixCls]="prefixCls"
+        [format]="getFormat()"
+        [value]="innerValue"
+        [locale]="locale"
+        [placeholder]="placeholder"
+        [allowClear]="true"
+        [disabledDate]="disabledDate"
+        (change)="onChange($event)"
+    ></ant-date-input>
+
+    <div class="{{prefixCls}}-date-panel">
+        <ant-calendar-header
+            [prefixCls]="prefixCls"
+            [locale]="locale"
+            [showTimePicker]="showTimePicker"
+            [isTimePickerVisible]="isTimePickerVisible"
+            [value]="innerValue"
+            [disabledMonth]="disabledDate"
+            (valueUpdate)="setValue($event)"
+        ></ant-calendar-header>
+
+        <div *ngIf="isTimePickerVisible" class="{{prefixCls}}-time-picker">
+            <ant-time-panel
+                prefixCls="{{prefixCls}}-time-picker"
+                panelCls="{{prefixCls}}-time-picker-panel"
+                [locale]="locale"
+                [value]="innerValue"
+                [disabledHours]="disabledHours"
+                [disabledMinutes]="disabledMinutes"
+                [disabledSeconds]="disabledSeconds"
+                (valueUpdate)="setValue($event)">
+            </ant-time-panel>
+        </div>
+
+
+        <div class="{{prefixCls}}-body">
+            <ant-date-panel
+                [prefixCls]="prefixCls"
+                [locale]="locale"
+                [value]="innerValue"
+                [disabledDate]="disabledDate"
+                [showWeekNumber]="showWeekNumber"
+                (valueUpdate)="onDateTableSelect($event)"
+            ></ant-date-panel>
+        </div>
+
+        <ant-calendar-footer
+            [prefixCls]="prefixCls"
+            [locale]="locale"
+            [value]="innerValue"
+            [showOk]="showOk"
+            [showToday]="showToday"
+            [showDateInput]="showDateInput"
+            [showTimePicker]="showTimePicker"
+            [isTimePickerVisible]="isTimePickerVisible"
+            [disabledDate]="disabledDate"
+            [okDisabled]="!isAllowedDate(innerValue)"
+            (confirm)="onConfirmSelect($event)"
+            (timePickerOpenChange)="onTimePickerOpenChange($event)"
+        ></ant-calendar-footer>
+    </div>
+</div>

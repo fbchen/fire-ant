@@ -1,0 +1,17 @@
+<div [ngClass]="tableClasses">
+    <div *ngIf="caption" class="{{prefixCls}}-title">
+        {{caption}}
+    </div>
+    <ng-container *ngIf="tableHeader">
+        <ng-content select="table-header"></ng-content>
+    </ng-container>
+
+    <ng-content select="table-content"></ng-content>
+
+    <div *ngIf="footer" class="{{prefixCls}}-footer">
+        {{footer}}
+    </div>
+    <ng-container *ngIf="tableFooter">
+        <ng-content select="table-footer"></ng-content>
+    </ng-container>
+</div>

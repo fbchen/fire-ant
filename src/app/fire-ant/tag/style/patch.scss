@@ -1,0 +1,13 @@
+@import "../../style/themes/default";
+
+$tag-prefix-cls: #{$ant-prefix}-tag;
+
+
+.#{$tag-prefix-cls}-checkable {
+    &-disabled {
+        cursor: not-allowed;
+        background: $input-disabled-bg;
+        color: $disabled-color;
+        border-color: $btn-default-border;
+    }
+}

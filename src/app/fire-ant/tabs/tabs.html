@@ -1,0 +1,58 @@
+<div
+    role="tablist"
+    [ngClass]="barClasses"
+    tabIndex="0" [ngStyle]="tabBarStyle"
+    (keydown)="onKeyDown($event)"
+>
+    <div style="float: right;" *ngIf="isAddButtonVisible()">
+        <div class="{{prefixCls}}-extra-content">
+            <ant-icon title="新增标签" type="plus"
+                class="{{prefixCls}}-new-tab"
+                (click)="addNewTab($event)"></ant-icon>
+        </div>
+    </div>
+    <div style="float: right;" *ngIf="nzTabBarSuffix">
+        <div class="{{prefixCls}}-extra-content">
+            <ng-template *ngIf="nzTabBarSuffix" [ngTemplateOutlet]="nzTabBarSuffix"></ng-template>
+        </div>
+    </div>
+
+    <div #container [ngClass]="navContainerClasses">
+        <span *ngIf="isNavButtonVisible()"
+            unselectable="unselectable" [ngClass]="navPrevButtonClasses" (click)="onPrevClick($event)">
+            <span class="{{prefixCls}}-tab-prev-icon"></span>
+        </span>
+        <span *ngIf="isNavButtonVisible()"
+            unselectable="unselectable" [ngClass]="navNextButtonClasses" (click)="onNextClick($event)">
+            <span class="{{prefixCls}}-tab-next-icon"></span>
+        </span>
+        <div #navWrap class="{{prefixCls}}-nav-wrap">
+            <div #swipe class="{{prefixCls}}-nav-scroll">
+                <div #nav [ngClass]="navClasses" [ngStyle]="navStyles">
+                    <div *ngFor="let tab of tabPanes"
+                        role="tab"
+                        [ngStyle]="tabStyles"
+                        [ngClass]="tab.headerClasses"
+                        [attr.aria-disabled]="tab.disabled ? 'true' : 'false'"
+                        [attr.aria-selected]="tab.active ? 'true' : 'false'"
+                        [attr.data-tabkey]="tab.key"
+                        (click)="onTabClick($event, tab)"
+                    >
+                        <span>
+                            <ng-template *ngIf="tab.nzTabTitleTemplate; else showTabTitle"
+                                [ngTemplateOutlet]="tab.nzTabTitleTemplate"></ng-template>
+                            <ng-template #showTabTitle>{{tab.tabTitle}}</ng-template>
+                        </span>
+                        <ant-icon *ngIf="tab.closable"
+                            type="close" (click)="removeTab(tab, $event)"></ant-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div #tabContent [ngClass]="contentClasses" [ngStyle]="contentStyles">
+    <ng-content select="ant-tabpane"></ng-content>
+</div>
+
